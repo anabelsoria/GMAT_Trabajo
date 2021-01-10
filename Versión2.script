@@ -1,0 +1,208 @@
+%General Mission Analysis Tool(GMAT) Script
+%Created: 2021-01-10 22:07:32
+
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft JupiterExpress;
+GMAT JupiterExpress.DateFormat = UTCGregorian;
+GMAT JupiterExpress.Epoch = '19 Jan 2030 11:59:28.000';
+GMAT JupiterExpress.CoordinateSystem = EarthMJ2000Eq;
+GMAT JupiterExpress.DisplayStateType = Cartesian;
+GMAT JupiterExpress.X = 1e-08;
+GMAT JupiterExpress.Y = 1e-08;
+GMAT JupiterExpress.Z = 1e-08;
+GMAT JupiterExpress.VX = 1e-08;
+GMAT JupiterExpress.VY = 1e-08;
+GMAT JupiterExpress.VZ = 1e-08;
+GMAT JupiterExpress.DryMass = 500;
+GMAT JupiterExpress.Cd = 2.2;
+GMAT JupiterExpress.Cr = 1.8;
+GMAT JupiterExpress.DragArea = 15;
+GMAT JupiterExpress.SRPArea = 1;
+GMAT JupiterExpress.SPADDragScaleFactor = 1;
+GMAT JupiterExpress.SPADSRPScaleFactor = 1;
+GMAT JupiterExpress.NAIFId = -10001001;
+GMAT JupiterExpress.NAIFIdReferenceFrame = -9001001;
+GMAT JupiterExpress.OrbitColor = Red;
+GMAT JupiterExpress.TargetColor = Teal;
+GMAT JupiterExpress.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT JupiterExpress.CdSigma = 1e+70;
+GMAT JupiterExpress.CrSigma = 1e+70;
+GMAT JupiterExpress.Id = 'SatId';
+GMAT JupiterExpress.Attitude = CoordinateSystemFixed;
+GMAT JupiterExpress.SPADSRPInterpolationMethod = Bilinear;
+GMAT JupiterExpress.SPADSRPScaleFactorSigma = 1e+70;
+GMAT JupiterExpress.SPADDragInterpolationMethod = Bilinear;
+GMAT JupiterExpress.SPADDragScaleFactorSigma = 1e+70;
+GMAT JupiterExpress.ModelFile = 'aura.3ds';
+GMAT JupiterExpress.ModelOffsetX = 0;
+GMAT JupiterExpress.ModelOffsetY = 0;
+GMAT JupiterExpress.ModelOffsetZ = 0;
+GMAT JupiterExpress.ModelRotationX = 0;
+GMAT JupiterExpress.ModelRotationY = 0;
+GMAT JupiterExpress.ModelRotationZ = 0;
+GMAT JupiterExpress.ModelScale = 1;
+GMAT JupiterExpress.AttitudeDisplayStateType = 'Quaternion';
+GMAT JupiterExpress.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT JupiterExpress.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT JupiterExpress.EulerAngleSequence = '321';
+
+
+%----------------------------------------
+%---------- ForceModels
+%----------------------------------------
+
+Create ForceModel DeepSpaceProp_ForceModel;
+GMAT DeepSpaceProp_ForceModel.CentralBody = Sun;
+GMAT DeepSpaceProp_ForceModel.PointMasses = {Sun};
+GMAT DeepSpaceProp_ForceModel.Drag = None;
+GMAT DeepSpaceProp_ForceModel.SRP = Off;
+GMAT DeepSpaceProp_ForceModel.RelativisticCorrection = Off;
+GMAT DeepSpaceProp_ForceModel.ErrorControl = RSSStep;
+
+%----------------------------------------
+%---------- Propagators
+%----------------------------------------
+
+Create Propagator DeepSpaceProp;
+GMAT DeepSpaceProp.FM = DeepSpaceProp_ForceModel;
+GMAT DeepSpaceProp.Type = RungeKutta89;
+GMAT DeepSpaceProp.InitialStepSize = 60;
+GMAT DeepSpaceProp.Accuracy = 9.999999999999999e-12;
+GMAT DeepSpaceProp.MinStep = 0.001;
+GMAT DeepSpaceProp.MaxStep = 86400;
+GMAT DeepSpaceProp.MaxStepAttempts = 50;
+GMAT DeepSpaceProp.StopIfAccuracyIsViolated = true;
+
+%----------------------------------------
+%---------- Burns
+%----------------------------------------
+
+Create ImpulsiveBurn DeltaV_1;
+GMAT DeltaV_1.CoordinateSystem = Local;
+GMAT DeltaV_1.Origin = Sun;
+GMAT DeltaV_1.Axes = VNB;
+GMAT DeltaV_1.Element1 = 0;
+GMAT DeltaV_1.Element2 = 0;
+GMAT DeltaV_1.Element3 = 0;
+GMAT DeltaV_1.DecrementMass = false;
+GMAT DeltaV_1.Isp = 300;
+GMAT DeltaV_1.GravitationalAccel = 9.81;
+
+%----------------------------------------
+%---------- Coordinate Systems
+%----------------------------------------
+
+Create CoordinateSystem SunICRF;
+GMAT SunICRF.Origin = Sun;
+GMAT SunICRF.Axes = ICRF;
+
+Create CoordinateSystem JupiterICRF;
+GMAT JupiterICRF.Origin = Jupiter;
+GMAT JupiterICRF.Axes = ICRF;
+
+%----------------------------------------
+%---------- Solvers
+%----------------------------------------
+
+Create DifferentialCorrector DC1;
+GMAT DC1.ShowProgress = true;
+GMAT DC1.ReportStyle = Normal;
+GMAT DC1.ReportFile = 'DifferentialCorrectorDefaultDC.data';
+GMAT DC1.MaximumIterations = 250;
+GMAT DC1.DerivativeMethod = ForwardDifference;
+GMAT DC1.Algorithm = NewtonRaphson;
+
+%----------------------------------------
+%---------- Subscribers
+%----------------------------------------
+
+Create OrbitView SolarSystemView;
+GMAT SolarSystemView.SolverIterations = Current;
+GMAT SolarSystemView.UpperLeft = [ 0 0 ];
+GMAT SolarSystemView.Size = [ 0.9875389408099688 0.8494957331264547 ];
+GMAT SolarSystemView.RelativeZOrder = 81;
+GMAT SolarSystemView.Maximized = false;
+GMAT SolarSystemView.Add = {JupiterExpress, Sun, Earth, Jupiter};
+GMAT SolarSystemView.CoordinateSystem = SunICRF;
+GMAT SolarSystemView.DrawObject = [ true true true true ];
+GMAT SolarSystemView.DataCollectFrequency = 1;
+GMAT SolarSystemView.UpdatePlotFrequency = 50;
+GMAT SolarSystemView.NumPointsToRedraw = 0;
+GMAT SolarSystemView.ShowPlot = true;
+GMAT SolarSystemView.MaxPlotPoints = 20000;
+GMAT SolarSystemView.ShowLabels = true;
+GMAT SolarSystemView.ViewPointReference = Earth;
+GMAT SolarSystemView.ViewPointVector = [ 0 0 800000000 ];
+GMAT SolarSystemView.ViewDirection = Earth;
+GMAT SolarSystemView.ViewScaleFactor = 1;
+GMAT SolarSystemView.ViewUpCoordinateSystem = SunICRF;
+GMAT SolarSystemView.ViewUpAxis = Z;
+GMAT SolarSystemView.EclipticPlane = Off;
+GMAT SolarSystemView.XYPlane = On;
+GMAT SolarSystemView.WireFrame = Off;
+GMAT SolarSystemView.Axes = On;
+GMAT SolarSystemView.Grid = Off;
+GMAT SolarSystemView.SunLine = Off;
+GMAT SolarSystemView.UseInitialView = On;
+GMAT SolarSystemView.StarCount = 7000;
+GMAT SolarSystemView.EnableStars = On;
+GMAT SolarSystemView.EnableConstellations = On;
+
+Create OrbitView OrbitView1;
+GMAT OrbitView1.SolverIterations = Current;
+GMAT OrbitView1.UpperLeft = [ 0 0.4468580294802172 ];
+GMAT OrbitView1.Size = [ 0.5003894080996885 0.4499612102404965 ];
+GMAT OrbitView1.RelativeZOrder = 75;
+GMAT OrbitView1.Maximized = false;
+GMAT OrbitView1.Add = {JupiterExpress, Earth};
+GMAT OrbitView1.CoordinateSystem = JupiterICRF;
+GMAT OrbitView1.DrawObject = [ true true ];
+GMAT OrbitView1.DataCollectFrequency = 1;
+GMAT OrbitView1.UpdatePlotFrequency = 50;
+GMAT OrbitView1.NumPointsToRedraw = 0;
+GMAT OrbitView1.ShowPlot = true;
+GMAT OrbitView1.MaxPlotPoints = 20000;
+GMAT OrbitView1.ShowLabels = true;
+GMAT OrbitView1.ViewPointReference = Jupiter;
+GMAT OrbitView1.ViewPointVector = [ 150000 150000 0 ];
+GMAT OrbitView1.ViewDirection = Jupiter;
+GMAT OrbitView1.ViewScaleFactor = 1;
+GMAT OrbitView1.ViewUpCoordinateSystem = JupiterICRF;
+GMAT OrbitView1.ViewUpAxis = Z;
+GMAT OrbitView1.EclipticPlane = Off;
+GMAT OrbitView1.XYPlane = On;
+GMAT OrbitView1.WireFrame = Off;
+GMAT OrbitView1.Axes = On;
+GMAT OrbitView1.Grid = Off;
+GMAT OrbitView1.SunLine = Off;
+GMAT OrbitView1.UseInitialView = On;
+GMAT OrbitView1.StarCount = 7000;
+GMAT OrbitView1.EnableStars = On;
+GMAT OrbitView1.EnableConstellations = On;
+
+%----------------------------------------
+%---------- Arrays, Variables, Strings
+%----------------------------------------
+Create Variable TOF;
+GMAT TOF = 700;
+
+
+
+
+%----------------------------------------
+%---------- Mission Sequence
+%----------------------------------------
+
+BeginMissionSequence;
+Target 'ReachJupiter' DC1 {SolveMode = Solve, ExitMode = DiscardAndContinue, ShowProgressWindow = true};
+   Vary 'VaryVx' DC1(DeltaV_1.Element1 = 1219941.65968598, {Perturbation = 0.0001, Lower = -10, Upper = 10, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+   Vary 'VaryVy' DC1(DeltaV_1.Element2 = 1219941.65968598, {Perturbation = 0.0001, Lower = -10, Upper = 10, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+   Vary 'VaryVz' DC1(DeltaV_1.Element3 = 1219941.65968598, {Perturbation = 0.0001, Lower = -10, Upper = 10, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+   Maneuver 'HelioManeuver' DeltaV_1(JupiterExpress);
+   Propagate 'PropTOF' DeepSpaceProp(JupiterExpress) {JupiterExpress.ElapsedDays = TOF};
+   Achieve 'AchieveJupiter' DC1(JupiterExpress.Jupiter.RMAG = 0, {Tolerance = 3.31e7});
+EndTarget;  % For targeter DC1
