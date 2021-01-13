@@ -1,0 +1,129 @@
+%General Mission Analysis Tool(GMAT) Script
+%Created: 2021-01-13 11:44:08
+
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft DefaultSC;
+GMAT DefaultSC.DateFormat = TAIModJulian;
+GMAT DefaultSC.Epoch = '21545';
+GMAT DefaultSC.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC.DisplayStateType = Cartesian;
+GMAT DefaultSC.X = 7100;
+GMAT DefaultSC.Y = 0;
+GMAT DefaultSC.Z = 1300;
+GMAT DefaultSC.VX = 0;
+GMAT DefaultSC.VY = 7.35;
+GMAT DefaultSC.VZ = 1;
+GMAT DefaultSC.DryMass = 850;
+GMAT DefaultSC.Cd = 2.2;
+GMAT DefaultSC.Cr = 1.8;
+GMAT DefaultSC.DragArea = 15;
+GMAT DefaultSC.SRPArea = 1;
+GMAT DefaultSC.SPADDragScaleFactor = 1;
+GMAT DefaultSC.SPADSRPScaleFactor = 1;
+GMAT DefaultSC.NAIFId = -10000001;
+GMAT DefaultSC.NAIFIdReferenceFrame = -9000001;
+GMAT DefaultSC.OrbitColor = Red;
+GMAT DefaultSC.TargetColor = Teal;
+GMAT DefaultSC.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT DefaultSC.CdSigma = 1e+70;
+GMAT DefaultSC.CrSigma = 1e+70;
+GMAT DefaultSC.Id = 'SatId';
+GMAT DefaultSC.Attitude = CoordinateSystemFixed;
+GMAT DefaultSC.SPADSRPInterpolationMethod = Bilinear;
+GMAT DefaultSC.SPADSRPScaleFactorSigma = 1e+70;
+GMAT DefaultSC.SPADDragInterpolationMethod = Bilinear;
+GMAT DefaultSC.SPADDragScaleFactorSigma = 1e+70;
+GMAT DefaultSC.ModelFile = 'aura.3ds';
+GMAT DefaultSC.ModelOffsetX = 0;
+GMAT DefaultSC.ModelOffsetY = 0;
+GMAT DefaultSC.ModelOffsetZ = 0;
+GMAT DefaultSC.ModelRotationX = 0;
+GMAT DefaultSC.ModelRotationY = 0;
+GMAT DefaultSC.ModelRotationZ = 0;
+GMAT DefaultSC.ModelScale = 1;
+GMAT DefaultSC.AttitudeDisplayStateType = 'Quaternion';
+GMAT DefaultSC.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT DefaultSC.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- ForceModels
+%----------------------------------------
+
+Create ForceModel Deep_Space_ForceModel;
+GMAT Deep_Space_ForceModel.CentralBody = Sun;
+GMAT Deep_Space_ForceModel.PointMasses = {Sun};
+GMAT Deep_Space_ForceModel.Drag = None;
+GMAT Deep_Space_ForceModel.SRP = Off;
+GMAT Deep_Space_ForceModel.RelativisticCorrection = Off;
+GMAT Deep_Space_ForceModel.ErrorControl = RSSStep;
+
+%----------------------------------------
+%---------- Propagators
+%----------------------------------------
+
+Create Propagator Deep_Space;
+GMAT Deep_Space.FM = Deep_Space_ForceModel;
+GMAT Deep_Space.Type = RungeKutta89;
+GMAT Deep_Space.InitialStepSize = 60;
+GMAT Deep_Space.Accuracy = 9.999999999999999e-12;
+GMAT Deep_Space.MinStep = 0.001;
+GMAT Deep_Space.MaxStep = 2700;
+GMAT Deep_Space.MaxStepAttempts = 50;
+GMAT Deep_Space.StopIfAccuracyIsViolated = true;
+
+%----------------------------------------
+%---------- Coordinate Systems
+%----------------------------------------
+
+Create CoordinateSystem Sun_ICRF;
+GMAT Sun_ICRF.Origin = Sun;
+GMAT Sun_ICRF.Axes = ICRF;
+
+%----------------------------------------
+%---------- Subscribers
+%----------------------------------------
+
+Create OrbitView View_Solar_System;
+GMAT View_Solar_System.SolverIterations = Current;
+GMAT View_Solar_System.UpperLeft = [ 0 0 ];
+GMAT View_Solar_System.Size = [ 0 0 ];
+GMAT View_Solar_System.RelativeZOrder = 0;
+GMAT View_Solar_System.Maximized = false;
+GMAT View_Solar_System.Add = {DefaultSC, Earth, Jupiter, Venus};
+GMAT View_Solar_System.CoordinateSystem = Sun_ICRF;
+GMAT View_Solar_System.DrawObject = [ true true true true ];
+GMAT View_Solar_System.DataCollectFrequency = 1;
+GMAT View_Solar_System.UpdatePlotFrequency = 50;
+GMAT View_Solar_System.NumPointsToRedraw = 0;
+GMAT View_Solar_System.ShowPlot = true;
+GMAT View_Solar_System.MaxPlotPoints = 20000;
+GMAT View_Solar_System.ShowLabels = true;
+GMAT View_Solar_System.ViewPointReference = Sun;
+GMAT View_Solar_System.ViewPointVector = [ 0 0 500000000 ];
+GMAT View_Solar_System.ViewDirection = Sun;
+GMAT View_Solar_System.ViewScaleFactor = 1;
+GMAT View_Solar_System.ViewUpCoordinateSystem = Sun_ICRF;
+GMAT View_Solar_System.ViewUpAxis = Z;
+GMAT View_Solar_System.EclipticPlane = Off;
+GMAT View_Solar_System.XYPlane = On;
+GMAT View_Solar_System.WireFrame = Off;
+GMAT View_Solar_System.Axes = On;
+GMAT View_Solar_System.Grid = Off;
+GMAT View_Solar_System.SunLine = Off;
+GMAT View_Solar_System.UseInitialView = On;
+GMAT View_Solar_System.StarCount = 7000;
+GMAT View_Solar_System.EnableStars = Off;
+GMAT View_Solar_System.EnableConstellations = On;
+
+
+%----------------------------------------
+%---------- Mission Sequence
+%----------------------------------------
+
+BeginMissionSequence;
+Propagate Deep_Space(DefaultSC) {DefaultSC.ElapsedSecs = 12000.0};
