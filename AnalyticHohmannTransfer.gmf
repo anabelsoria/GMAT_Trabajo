@@ -1,0 +1,15 @@
+% Impulso necesario para ir de la Tierra a
+% elipse con radio apogea Jupiter
+
+function [x] = AnalyticHohmannTransfer
+
+Create Variable x r2 r1 mu_Sun a
+
+BeginMissionSequence
+
+r2 = 778.5472e6; %distancia sol-jupiter %km
+r1 = 149.6e6;  %distancia sol-tierra %km
+mu_Sun = 1.32712440018e11; 
+a = (r1+r2)/2;
+
+x = sqrt(2*mu_Sun*(1/r1-1/(2*a)))-sqrt(mu_Sun/r1)

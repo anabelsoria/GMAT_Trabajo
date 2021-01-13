@@ -1,5 +1,5 @@
 %General Mission Analysis Tool(GMAT) Script
-%Created: 2021-01-13 21:02:50
+%Created: 2021-01-13 20:20:42
 
 
 %----------------------------------------
@@ -49,8 +49,6 @@ GMAT JupiterExpress.AttitudeDisplayStateType = 'Quaternion';
 GMAT JupiterExpress.AttitudeRateDisplayStateType = 'AngularVelocity';
 GMAT JupiterExpress.AttitudeCoordinateSystem = EarthMJ2000Eq;
 GMAT JupiterExpress.EulerAngleSequence = '321';
-
-
 
 
 
@@ -128,8 +126,8 @@ GMAT DC1.Algorithm = NewtonRaphson;
 Create OrbitView SolarSystemView;
 GMAT SolarSystemView.SolverIterations = Current;
 GMAT SolarSystemView.UpperLeft = [ 0 0 ];
-GMAT SolarSystemView.Size = [ 0.9870593485051317 1.728053435114504 ];
-GMAT SolarSystemView.RelativeZOrder = 597;
+GMAT SolarSystemView.Size = [ 0.987239472564866 1.207373271889401 ];
+GMAT SolarSystemView.RelativeZOrder = 249;
 GMAT SolarSystemView.Maximized = false;
 GMAT SolarSystemView.Add = {JupiterExpress, Sun, Earth, Jupiter};
 GMAT SolarSystemView.CoordinateSystem = SunICRF;
@@ -193,8 +191,6 @@ GMAT JupiterView.EnableConstellations = On;
 %---------- Functions
 %----------------------------------------
 
-Create GmatFunction AnalyticHohmannTransfer;
-GMAT AnalyticHohmannTransfer.FunctionPath = 'C:\Users\Anabel\OneDrive - Universidad Politécnica de Madrid\Escritorio\UPM\EEA\GMAT_Trabajo\AnalyticHohmannTransfer.gmf';
 
 %----------------------------------------
 %---------- Arrays, Variables, Strings
@@ -209,13 +205,11 @@ GMAT DV0 = 6.2;
 
 
 
-
 %----------------------------------------
 %---------- Mission Sequence
 %----------------------------------------
 
 BeginMissionSequence;
-GMAT 'AnalyticCalculation' [DV0] = AnalyticHohmannTransfer;
 Target 'ReachJupiter' DC1 {SolveMode = Solve, ExitMode = DiscardAndContinue, ShowProgressWindow = true};
    Vary 'VaryVx' DC1(DeltaV_1.Element1 = DV0, {Perturbation = 0.0001, Lower = -10, Upper = 10, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
    Vary 'VaryVy' DC1(DeltaV_1.Element2 = 0, {Perturbation = 0.0001, Lower = -10, Upper = 10, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
