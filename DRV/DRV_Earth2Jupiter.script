@@ -26,7 +26,7 @@ GMAT Earth2Jupiter_ES.SPADDragScaleFactor = 1;
 GMAT Earth2Jupiter_ES.SPADSRPScaleFactor = 1;
 GMAT Earth2Jupiter_ES.NAIFId = -10000001;
 GMAT Earth2Jupiter_ES.NAIFIdReferenceFrame = -9000001;
-GMAT Earth2Jupiter_ES.OrbitColor = Red;
+GMAT Earth2Jupiter_ES.OrbitColor = [51 204 162];
 GMAT Earth2Jupiter_ES.TargetColor = Teal;
 GMAT Earth2Jupiter_ES.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
 GMAT Earth2Jupiter_ES.CdSigma = 1e+70;
@@ -55,12 +55,12 @@ GMAT Earth2Jupiter_HE_ES.DateFormat = UTCGregorian;
 GMAT Earth2Jupiter_HE_ES.Epoch = '19 Jan 2030 11:59:28.000';
 GMAT Earth2Jupiter_HE_ES.CoordinateSystem = EarthMJ2000Eq;
 GMAT Earth2Jupiter_HE_ES.DisplayStateType = OutgoingAsymptote;
-GMAT Earth2Jupiter_HE_ES.OutgoingRadPer = 7015.378524789846;
+GMAT Earth2Jupiter_HE_ES.OutgoingRadPer = 7015.378524789848;
 GMAT Earth2Jupiter_HE_ES.OutgoingC3Energy = -55.42322475310041;
-GMAT Earth2Jupiter_HE_ES.OutgoingRHA = 81.53186029837509;
-GMAT Earth2Jupiter_HE_ES.OutgoingDHA = 9.175961877476142;
-GMAT Earth2Jupiter_HE_ES.OutgoingBVAZI = 80.96526202436708;
-GMAT Earth2Jupiter_HE_ES.TA = 99.8877493320488;
+GMAT Earth2Jupiter_HE_ES.OutgoingRHA = 81.53186029837502;
+GMAT Earth2Jupiter_HE_ES.OutgoingDHA = 9.175961877476178;
+GMAT Earth2Jupiter_HE_ES.OutgoingBVAZI = 80.96526202436709;
+GMAT Earth2Jupiter_HE_ES.TA = 99.88774933204887;
 GMAT Earth2Jupiter_HE_ES.DryMass = 850;
 GMAT Earth2Jupiter_HE_ES.Cd = 2.2;
 GMAT Earth2Jupiter_HE_ES.Cr = 1.8;
@@ -70,7 +70,7 @@ GMAT Earth2Jupiter_HE_ES.SPADDragScaleFactor = 1;
 GMAT Earth2Jupiter_HE_ES.SPADSRPScaleFactor = 1;
 GMAT Earth2Jupiter_HE_ES.NAIFId = -10003001;
 GMAT Earth2Jupiter_HE_ES.NAIFIdReferenceFrame = -9003001;
-GMAT Earth2Jupiter_HE_ES.OrbitColor = Green;
+GMAT Earth2Jupiter_HE_ES.OrbitColor = [0 115 242];
 GMAT Earth2Jupiter_HE_ES.TargetColor = LightGray;
 GMAT Earth2Jupiter_HE_ES.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
 GMAT Earth2Jupiter_HE_ES.CdSigma = 1e+70;
@@ -93,6 +93,8 @@ GMAT Earth2Jupiter_HE_ES.AttitudeDisplayStateType = 'Quaternion';
 GMAT Earth2Jupiter_HE_ES.AttitudeRateDisplayStateType = 'AngularVelocity';
 GMAT Earth2Jupiter_HE_ES.AttitudeCoordinateSystem = EarthMJ2000Eq;
 GMAT Earth2Jupiter_HE_ES.EulerAngleSequence = '321';
+
+
 
 
 
@@ -169,6 +171,10 @@ Create CoordinateSystem ICRF_Sun;
 GMAT ICRF_Sun.Origin = Sun;
 GMAT ICRF_Sun.Axes = ICRF;
 
+Create CoordinateSystem ICRF_Jupiter;
+GMAT ICRF_Jupiter.Origin = Jupiter;
+GMAT ICRF_Jupiter.Axes = ICRF;
+
 %----------------------------------------
 %---------- Solvers
 %----------------------------------------
@@ -187,9 +193,9 @@ GMAT DC1.Algorithm = NewtonRaphson;
 
 Create OrbitView View_SolarSystem;
 GMAT View_SolarSystem.SolverIterations = Current;
-GMAT View_SolarSystem.UpperLeft = [ 0.01529411764705882 0.2170454545454545 ];
+GMAT View_SolarSystem.UpperLeft = [ 0.01176470588235294 0.2102272727272727 ];
 GMAT View_SolarSystem.Size = [ 0.5 0.8113636363636364 ];
-GMAT View_SolarSystem.RelativeZOrder = 94;
+GMAT View_SolarSystem.RelativeZOrder = 119;
 GMAT View_SolarSystem.Maximized = false;
 GMAT View_SolarSystem.Add = {Earth2Jupiter_ES, Earth, Jupiter, Sun};
 GMAT View_SolarSystem.CoordinateSystem = ICRF_Sun;
@@ -235,9 +241,9 @@ GMAT ReportFile1.ColumnWidth = 23;
 GMAT ReportFile1.WriteReport = true;
 
 Create DynamicDataDisplay DV_Injection;
-GMAT DV_Injection.UpperLeft = [ 0.002352941176470588 0 ];
-GMAT DV_Injection.Size = [ 0.1652941176470588 0.2170454545454545 ];
-GMAT DV_Injection.RelativeZOrder = 92;
+GMAT DV_Injection.UpperLeft = [ 0 0 ];
+GMAT DV_Injection.Size = [ 0.3388235294117647 0.4329545454545455 ];
+GMAT DV_Injection.RelativeZOrder = 121;
 GMAT DV_Injection.Maximized = false;
 GMAT DV_Injection.AddParameters = {1, VinfX, alpha};
 GMAT DV_Injection.AddParameters = {2, VinfY, delta};
@@ -247,6 +253,70 @@ GMAT DV_Injection.RowTextColors = {2, [0 0 0], [0 0 0]};
 GMAT DV_Injection.RowTextColors = {3, [0 0 0], [0 0 0]};
 GMAT DV_Injection.WarnColor = [218 165 32];
 GMAT DV_Injection.CritColor = [255 0 0];
+
+Create OrbitView View_Earth;
+GMAT View_Earth.SolverIterations = Current;
+GMAT View_Earth.UpperLeft = [ 0.3 0.2852272727272727 ];
+GMAT View_Earth.Size = [ 0.5 0.45 ];
+GMAT View_Earth.RelativeZOrder = 110;
+GMAT View_Earth.Maximized = false;
+GMAT View_Earth.Add = {Earth2Jupiter_HE_ES, Earth2Jupiter_ES, Earth};
+GMAT View_Earth.CoordinateSystem = EarthMJ2000Eq;
+GMAT View_Earth.DrawObject = [ true true true ];
+GMAT View_Earth.DataCollectFrequency = 1;
+GMAT View_Earth.UpdatePlotFrequency = 50;
+GMAT View_Earth.NumPointsToRedraw = 0;
+GMAT View_Earth.ShowPlot = true;
+GMAT View_Earth.MaxPlotPoints = 20000;
+GMAT View_Earth.ShowLabels = true;
+GMAT View_Earth.ViewPointReference = Earth;
+GMAT View_Earth.ViewPointVector = [ 150000 150000 0 ];
+GMAT View_Earth.ViewDirection = Earth;
+GMAT View_Earth.ViewScaleFactor = 1;
+GMAT View_Earth.ViewUpCoordinateSystem = EarthMJ2000Eq;
+GMAT View_Earth.ViewUpAxis = Z;
+GMAT View_Earth.EclipticPlane = Off;
+GMAT View_Earth.XYPlane = On;
+GMAT View_Earth.WireFrame = Off;
+GMAT View_Earth.Axes = On;
+GMAT View_Earth.Grid = Off;
+GMAT View_Earth.SunLine = Off;
+GMAT View_Earth.UseInitialView = On;
+GMAT View_Earth.StarCount = 7000;
+GMAT View_Earth.EnableStars = On;
+GMAT View_Earth.EnableConstellations = On;
+
+Create OrbitView View_Jupiter;
+GMAT View_Jupiter.SolverIterations = Current;
+GMAT View_Jupiter.UpperLeft = [ 0.3005882352941177 0.2863636363636364 ];
+GMAT View_Jupiter.Size = [ 0.5 0.45 ];
+GMAT View_Jupiter.RelativeZOrder = 41;
+GMAT View_Jupiter.Maximized = false;
+GMAT View_Jupiter.Add = {Earth2Jupiter_ES, Earth2Jupiter_HE_ES, Jupiter};
+GMAT View_Jupiter.CoordinateSystem = ICRF_Jupiter;
+GMAT View_Jupiter.DrawObject = [ true true true ];
+GMAT View_Jupiter.DataCollectFrequency = 1;
+GMAT View_Jupiter.UpdatePlotFrequency = 50;
+GMAT View_Jupiter.NumPointsToRedraw = 0;
+GMAT View_Jupiter.ShowPlot = true;
+GMAT View_Jupiter.MaxPlotPoints = 20000;
+GMAT View_Jupiter.ShowLabels = true;
+GMAT View_Jupiter.ViewPointReference = Jupiter;
+GMAT View_Jupiter.ViewPointVector = [ 1500000 1500000 0 ];
+GMAT View_Jupiter.ViewDirection = Jupiter;
+GMAT View_Jupiter.ViewScaleFactor = 1;
+GMAT View_Jupiter.ViewUpCoordinateSystem = ICRF_Jupiter;
+GMAT View_Jupiter.ViewUpAxis = Z;
+GMAT View_Jupiter.EclipticPlane = Off;
+GMAT View_Jupiter.XYPlane = On;
+GMAT View_Jupiter.WireFrame = Off;
+GMAT View_Jupiter.Axes = On;
+GMAT View_Jupiter.Grid = Off;
+GMAT View_Jupiter.SunLine = Off;
+GMAT View_Jupiter.UseInitialView = On;
+GMAT View_Jupiter.StarCount = 7000;
+GMAT View_Jupiter.EnableStars = On;
+GMAT View_Jupiter.EnableConstellations = On;
 
 %----------------------------------------
 %---------- Arrays, Variables, Strings
@@ -268,13 +338,15 @@ GMAT VinfZ = 0;
 
 
 
+
+
 %----------------------------------------
 %---------- Mission Sequence
 %----------------------------------------
 
 BeginMissionSequence;
 Target 'DV_Heliocentric' DC1 {SolveMode = Solve, ExitMode = DiscardAndContinue, ShowProgressWindow = true};
-   Vary 'Vary_Vx' DC1(Burn_Injection.Element1 = 6, {Perturbation = 0.0001, Lower = -10, Upper = 10, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+   Vary 'Vary_Vx' DC1(Burn_Injection.Element1 = 6.2, {Perturbation = 0.0001, Lower = -10, Upper = 10, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
    Vary 'Vary_Vy' DC1(Burn_Injection.Element2 = 0, {Perturbation = 0.0001, Lower = -10, Upper = 10, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
    Vary 'Vary_Vz' DC1(Burn_Injection.Element3 = 0, {Perturbation = 0.0001, Lower = -10, Upper = 10, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
    Maneuver 'Maneuver_Injection' Burn_Injection(Earth2Jupiter_ES);
@@ -299,4 +371,4 @@ BeginScript 'Out_Hip'
    GMAT Earth2Jupiter_HE_ES.Earth.OutgoingC3Energy = C3;
 EndScript;
 UpdateDynamicData DV_Injection;
-Propagate 'Propagate_Out_Hip' Prop_DeepSpace(Earth2Jupiter_HE_ES) {Earth2Jupiter_HE_ES.Earth.RMAG = 1e6};
+Propagate 'Propagate_Out_Hip' Prop_Earth_Hip(Earth2Jupiter_HE_ES) {Earth2Jupiter_HE_ES.Earth.RMAG = 1e6};
