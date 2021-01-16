@@ -1,5 +1,5 @@
 %General Mission Analysis Tool(GMAT) Script
-%Created: 2021-01-14 17:37:54
+%Created: 2021-01-14 19:25:15
 
 
 %----------------------------------------
@@ -55,11 +55,11 @@ GMAT JupiterExpress_OH.DateFormat = UTCGregorian;
 GMAT JupiterExpress_OH.Epoch = '19 Jan 2030 11:59:28.000';
 GMAT JupiterExpress_OH.CoordinateSystem = EarthMJ2000Eq;
 GMAT JupiterExpress_OH.DisplayStateType = OutgoingAsymptote;
-GMAT JupiterExpress_OH.OutgoingRadPer = 7015.378524789848;
-GMAT JupiterExpress_OH.OutgoingC3Energy = -55.42322475310042;
-GMAT JupiterExpress_OH.OutgoingRHA = 81.53186029837188;
-GMAT JupiterExpress_OH.OutgoingDHA = 9.175961877476617;
-GMAT JupiterExpress_OH.OutgoingBVAZI = 80.96526202436765;
+GMAT JupiterExpress_OH.OutgoingRadPer = 7015.378524789849;
+GMAT JupiterExpress_OH.OutgoingC3Energy = -55.42322475310041;
+GMAT JupiterExpress_OH.OutgoingRHA = 81.53186029837168;
+GMAT JupiterExpress_OH.OutgoingDHA = 9.175961877476629;
+GMAT JupiterExpress_OH.OutgoingBVAZI = 80.96526202436772;
 GMAT JupiterExpress_OH.TA = 8.537736462515939e-07;
 GMAT JupiterExpress_OH.DryMass = 850;
 GMAT JupiterExpress_OH.Cd = 2.2;
@@ -112,6 +112,7 @@ GMAT JupiterExpress_OH.EulerAngleSequence = '321';
 
 
 
+
 %----------------------------------------
 %---------- ForceModels
 %----------------------------------------
@@ -137,6 +138,14 @@ GMAT NearEarth_ForceModel.GravityField.Earth.StmLimit = 100;
 GMAT NearEarth_ForceModel.GravityField.Earth.PotentialFile = 'JGM2.cof';
 GMAT NearEarth_ForceModel.GravityField.Earth.TideModel = 'None';
 
+Create ForceModel NearJupiter_ForceModel;
+GMAT NearJupiter_ForceModel.CentralBody = Jupiter;
+GMAT NearJupiter_ForceModel.PointMasses = {Jupiter, Sun};
+GMAT NearJupiter_ForceModel.Drag = None;
+GMAT NearJupiter_ForceModel.SRP = Off;
+GMAT NearJupiter_ForceModel.RelativisticCorrection = Off;
+GMAT NearJupiter_ForceModel.ErrorControl = RSSStep;
+
 %----------------------------------------
 %---------- Propagators
 %----------------------------------------
@@ -160,6 +169,16 @@ GMAT NearEarth.MinStep = 0.001;
 GMAT NearEarth.MaxStep = 2700;
 GMAT NearEarth.MaxStepAttempts = 50;
 GMAT NearEarth.StopIfAccuracyIsViolated = true;
+
+Create Propagator NearJupiter;
+GMAT NearJupiter.FM = NearJupiter_ForceModel;
+GMAT NearJupiter.Type = RungeKutta89;
+GMAT NearJupiter.InitialStepSize = 60;
+GMAT NearJupiter.Accuracy = 9.999999999999999e-12;
+GMAT NearJupiter.MinStep = 0.001;
+GMAT NearJupiter.MaxStep = 2700;
+GMAT NearJupiter.MaxStepAttempts = 50;
+GMAT NearJupiter.StopIfAccuracyIsViolated = true;
 
 %----------------------------------------
 %---------- Burns
@@ -217,9 +236,9 @@ GMAT DC1.Algorithm = NewtonRaphson;
 
 Create OrbitView SolarSystemView;
 GMAT SolarSystemView.SolverIterations = Current;
-GMAT SolarSystemView.UpperLeft = [ -0.0171118530884808 -21.68454935622318 ];
-GMAT SolarSystemView.Size = [ 0.4106844741235393 1.204577968526466 ];
-GMAT SolarSystemView.RelativeZOrder = 169;
+GMAT SolarSystemView.UpperLeft = [ 0.4977356937011116 0.6620278330019881 ];
+GMAT SolarSystemView.Size = [ 0.4985590778097982 0.3313452617627568 ];
+GMAT SolarSystemView.RelativeZOrder = 534;
 GMAT SolarSystemView.Maximized = false;
 GMAT SolarSystemView.Add = {JupiterExpress, JupiterExpress_OH, Sun, Earth, Jupiter};
 GMAT SolarSystemView.CoordinateSystem = SunICRF;
@@ -249,9 +268,9 @@ GMAT SolarSystemView.EnableConstellations = On;
 
 Create OrbitView JupiterView;
 GMAT JupiterView.SolverIterations = Current;
-GMAT JupiterView.UpperLeft = [ 0.1715358931552588 0.2496423462088698 ];
-GMAT JupiterView.Size = [ 0.9353088480801336 0.6473533619456366 ];
-GMAT JupiterView.RelativeZOrder = 415;
+GMAT JupiterView.UpperLeft = [ 0.4985590778097982 0 ];
+GMAT JupiterView.Size = [ 0.4989707698641416 0.3320079522862823 ];
+GMAT JupiterView.RelativeZOrder = 523;
 GMAT JupiterView.Maximized = false;
 GMAT JupiterView.Add = {JupiterExpress, JupiterExpress_OH, Jupiter};
 GMAT JupiterView.CoordinateSystem = JupiterICRF;
@@ -297,9 +316,9 @@ GMAT ReportFile1.ColumnWidth = 23;
 GMAT ReportFile1.WriteReport = true;
 
 Create DynamicDataDisplay Results;
-GMAT Results.UpperLeft = [ -0.00333889816360601 0.03719599427753934 ];
-GMAT Results.Size = [ 0.1961602671118531 0.5071530758226037 ];
-GMAT Results.RelativeZOrder = 403;
+GMAT Results.UpperLeft = [ 0.4409221902017291 0.3220675944333996 ];
+GMAT Results.Size = [ 0.5249073692877727 0.441351888667992 ];
+GMAT Results.RelativeZOrder = 548;
 GMAT Results.Maximized = false;
 GMAT Results.AddParameters = {1, VinfX};
 GMAT Results.AddParameters = {2, VinfY};
@@ -350,6 +369,18 @@ GMAT EarthView.StarCount = 7000;
 GMAT EarthView.EnableStars = On;
 GMAT EarthView.EnableConstellations = On;
 
+Create DynamicDataDisplay Results_in;
+GMAT Results_in.UpperLeft = [ 0.002058460271716756 0.4526176275679258 ];
+GMAT Results_in.Size = [ 0.5088513791683821 0.486414844267727 ];
+GMAT Results_in.RelativeZOrder = 568;
+GMAT Results_in.Maximized = false;
+GMAT Results_in.AddParameters = {1, JupiterExpress_OH.JupiterICRF.INC};
+GMAT Results_in.AddParameters = {2, JupiterExpress_OH.Jupiter.RadPer};
+GMAT Results_in.RowTextColors = {1, [0 0 0]};
+GMAT Results_in.RowTextColors = {2, [0 0 0]};
+GMAT Results_in.WarnColor = [218 165 32];
+GMAT Results_in.CritColor = [255 0 0];
+
 %----------------------------------------
 %---------- Functions
 %----------------------------------------
@@ -362,7 +393,7 @@ GMAT AnalyticHohmannTransfer.FunctionPath = 'C:\Users\Anabel\OneDrive - Universi
 %----------------------------------------
 Create Variable TOF DV0 alpha delta C3 Rp INC BVAZI VinfX VinfY;
 Create Variable VinfZ TOF_MCM phi delta_in Rp_in mu_J BVAZI_in C3_in b INC_in;
-Create Variable phi_in;
+Create Variable phi_in BR BT;
 GMAT TOF = 815;
 GMAT DV0 = 6.2;
 GMAT alpha = 0;
@@ -377,13 +408,16 @@ GMAT VinfZ = 0;
 GMAT TOF_MCM = 0;
 GMAT phi = 0;
 GMAT delta_in = 0;
-GMAT Rp_in = 0;
+GMAT Rp_in = 72992;
 GMAT mu_J = 126686534;
 GMAT BVAZI_in = 0;
 GMAT C3_in = 0;
 GMAT b = 0;
 GMAT INC_in = 40;
 GMAT phi_in = 0;
+GMAT BR = 0;
+GMAT BT = 0;
+
 
 
 
@@ -445,16 +479,16 @@ Propagate 'PropToEarthSOI' NearEarth(JupiterExpress_OH) {JupiterExpress_OH.Earth
 GMAT 'TOF_MCM' TOF_MCM = TOF/2;
 Propagate 'PropToMCM' DeepSpaceProp(JupiterExpress_OH) {JupiterExpress_OH.ElapsedDays = TOF_MCM};
 Target DC1 {SolveMode = Solve, ExitMode = DiscardAndContinue, ShowProgressWindow = true};
-   Vary 'VaryVx' DC1(DeltaV_1.Element1 = 0, {Perturbation = 0.0001, Lower = -3, Upper = 3, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
-   Vary 'VaryVy' DC1(DeltaV_1.Element1 = 0, {Perturbation = 0.0001, Lower = -3, Upper = 3, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
-   Vary 'VaryVz' DC1(DeltaV_1.Element1 = 0, {Perturbation = 0.0001, Lower = -3, Upper = 3, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+   Vary 'VaryVx' DC1(MCI.Element1 = -0.1528441763588748, {Perturbation = 0.0001, Lower = -3, Upper = 3, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+   Vary 'VaryVy' DC1(MCI.Element2 = -0.07249360874286365, {Perturbation = 0.0001, Lower = -3, Upper = 3, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+   Vary 'VaryVz' DC1(MCI.Element3 = 0.01404641272649604, {Perturbation = 0.0001, Lower = -3, Upper = 3, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
    Maneuver 'MCM' MCI(JupiterExpress_OH);
-   Propagate 'PropToJupSOI' DeepSpaceProp(JupiterExpress_OH) {JupiterExpress_OH.Jupiter.RMAG = 48.2e6};
+   Propagate 'PropToJupSOI' DeepSpaceProp(JupiterExpress_OH) {JupiterExpress_OH.Jupiter.RMAG = 48.2e6, OrbitColor = [255 0 255]};
    
    BeginScript 'ExtractVinf'
-      GMAT VinfX = JupiterExpress.JupiterICRF.VX;
-      GMAT VinfY = JupiterExpress.JupiterICRF.VY;
-      GMAT VinfZ = JupiterExpress.JupiterICRF.VZ;
+      GMAT VinfX = JupiterExpress_OH.JupiterICRF.VX;
+      GMAT VinfY = JupiterExpress_OH.JupiterICRF.VY;
+      GMAT VinfZ = JupiterExpress_OH.JupiterICRF.VZ;
       
       GMAT C3_in = VinfX^2 + VinfY^2 + VinfZ^2;
       GMAT delta_in = RadToDeg(asin(VinfZ/sqrt(C3_in)));
@@ -465,8 +499,12 @@ Target DC1 {SolveMode = Solve, ExitMode = DiscardAndContinue, ShowProgressWindow
       % Calculo phi
       GMAT phi_in = asin(sin(DegToRad(delta_in))/sin(DegToRad(INC_in)));
       GMAT BVAZI_in = 90 + RadToDeg(asin(cos(phi_in)*sin(DegToRad(INC_in))/cos(DegToRad(delta_in))));
+      
+      GMAT BR = b*sin(DegToRad(BVAZI_in));
+      GMAT BT = b*cos(DegToRad(BVAZI_in));
    EndScript;
-   Propagate 'PropToPer' DeepSpaceProp(JupiterExpress) {JupiterExpress_OH.Earth.Periapsis};
-   Achieve DC1(JupiterExpress.Earth.RMAG = 42165.0, {Tolerance = 0.1});
-   Achieve DC1(JupiterExpress.Earth.RMAG = 42165.0, {Tolerance = 0.1});
+   Propagate 'PropToPer' NearJupiter(JupiterExpress_OH) {JupiterExpress_OH.Jupiter.Periapsis, OrbitColor = [128 0 255]};
+   Achieve 'AchieveBDotR' DC1(JupiterExpress_OH.JupiterICRF.BdotR = BR, {Tolerance = 0.1});
+   Achieve 'AchieveBDotT' DC1(JupiterExpress_OH.JupiterICRF.BdotT = BT, {Tolerance = 0.1});
 EndTarget;  % For targeter DC1
+UpdateDynamicData Results_in;
