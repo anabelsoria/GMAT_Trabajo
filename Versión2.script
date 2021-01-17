@@ -402,10 +402,10 @@ GMAT Results_in.CritColor = [255 0 0];
 %----------------------------------------
 
 Create GmatFunction AnalyticHohmannTransfer;
-GMAT AnalyticHohmannTransfer.FunctionPath = 'C:\Users\Anabel\OneDrive - Universidad Politécnica de Madrid\Escritorio\UPM\EEA\GMAT_Trabajo\AnalyticHohmannTransfer.gmf';
+GMAT AnalyticHohmannTransfer.FunctionPath = '\AnalyticHohmannTransfer.gmf';
 
 Create GmatFunction AnalyticImpulse;
-GMAT AnalyticImpulse.FunctionPath = 'C:\Users\Anabel\OneDrive - Universidad Politécnica de Madrid\Escritorio\UPM\EEA\GMAT_Trabajo\AnalyticImpulse.gmf';
+GMAT AnalyticImpulse.FunctionPath = '\AnalyticImpulse.gmf';
 
 %----------------------------------------
 %---------- Arrays, Variables, Strings
