@@ -1,5 +1,5 @@
 %General Mission Analysis Tool(GMAT) Script
-%Created: 2021-01-18 14:23:16
+%Created: 2021-01-18 17:00:41
 
 
 %----------------------------------------
@@ -55,12 +55,12 @@ GMAT JupiterExpress_OH.DateFormat = UTCGregorian;
 GMAT JupiterExpress_OH.Epoch = '19 Jan 2030 11:59:28.000';
 GMAT JupiterExpress_OH.CoordinateSystem = EarthMJ2000Eq;
 GMAT JupiterExpress_OH.DisplayStateType = OutgoingAsymptote;
-GMAT JupiterExpress_OH.OutgoingRadPer = 7015.378524789855;
+GMAT JupiterExpress_OH.OutgoingRadPer = 7015.378524789856;
 GMAT JupiterExpress_OH.OutgoingC3Energy = -55.42322475310043;
-GMAT JupiterExpress_OH.OutgoingRHA = 81.53186029837102;
-GMAT JupiterExpress_OH.OutgoingDHA = 9.1759618774768;
-GMAT JupiterExpress_OH.OutgoingBVAZI = 80.9652620243678;
-GMAT JupiterExpress_OH.TA = 0;
+GMAT JupiterExpress_OH.OutgoingRHA = 81.53186029837127;
+GMAT JupiterExpress_OH.OutgoingDHA = 9.175961877476757;
+GMAT JupiterExpress_OH.OutgoingBVAZI = 80.96526202436775;
+GMAT JupiterExpress_OH.TA = 360;
 GMAT JupiterExpress_OH.DryMass = 850;
 GMAT JupiterExpress_OH.Cd = 2.2;
 GMAT JupiterExpress_OH.Cr = 1.8;
@@ -93,6 +93,7 @@ GMAT JupiterExpress_OH.AttitudeDisplayStateType = 'Quaternion';
 GMAT JupiterExpress_OH.AttitudeRateDisplayStateType = 'AngularVelocity';
 GMAT JupiterExpress_OH.AttitudeCoordinateSystem = EarthMJ2000Eq;
 GMAT JupiterExpress_OH.EulerAngleSequence = '321';
+
 
 
 
@@ -256,9 +257,9 @@ GMAT DC1.Algorithm = NewtonRaphson;
 
 Create OrbitView SolarSystemView;
 GMAT SolarSystemView.SolverIterations = Current;
-GMAT SolarSystemView.UpperLeft = [ 0.4235294117647059 0.5727272727272728 ];
+GMAT SolarSystemView.UpperLeft = [ 0.4223529411764706 0.5704545454545454 ];
 GMAT SolarSystemView.Size = [ 0.4982352941176471 0.3306818181818182 ];
-GMAT SolarSystemView.RelativeZOrder = 261;
+GMAT SolarSystemView.RelativeZOrder = 108;
 GMAT SolarSystemView.Maximized = false;
 GMAT SolarSystemView.Add = {JupiterExpress, JupiterExpress_OH, Sun, Earth, Jupiter};
 GMAT SolarSystemView.CoordinateSystem = SunICRF;
@@ -288,9 +289,9 @@ GMAT SolarSystemView.EnableConstellations = On;
 
 Create OrbitView JupiterView;
 GMAT JupiterView.SolverIterations = Current;
-GMAT JupiterView.UpperLeft = [ 0.4552941176470588 0.04090909090909091 ];
+GMAT JupiterView.UpperLeft = [ 0.4547058823529412 0.03977272727272727 ];
 GMAT JupiterView.Size = [ 0.4988235294117647 0.4113636363636364 ];
-GMAT JupiterView.RelativeZOrder = 249;
+GMAT JupiterView.RelativeZOrder = 65;
 GMAT JupiterView.Maximized = false;
 GMAT JupiterView.Add = {JupiterExpress, JupiterExpress_OH, Jupiter};
 GMAT JupiterView.CoordinateSystem = JupiterICRF;
@@ -319,9 +320,9 @@ GMAT JupiterView.EnableStars = On;
 GMAT JupiterView.EnableConstellations = On;
 
 Create DynamicDataDisplay Results;
-GMAT Results.UpperLeft = [ 0.2505882352941177 0.2863636363636364 ];
-GMAT Results.Size = [ 0.7723529411764706 1.227272727272727 ];
-GMAT Results.RelativeZOrder = 257;
+GMAT Results.UpperLeft = [ 0.01647058823529412 0.2045454545454546 ];
+GMAT Results.Size = [ 0.79 1.227272727272727 ];
+GMAT Results.RelativeZOrder = 151;
 GMAT Results.Maximized = false;
 GMAT Results.AddParameters = {1, VinfX};
 GMAT Results.AddParameters = {2, VinfY};
@@ -373,9 +374,9 @@ GMAT EarthView.EnableStars = On;
 GMAT EarthView.EnableConstellations = On;
 
 Create DynamicDataDisplay Results_in;
-GMAT Results_in.UpperLeft = [ 0.05647058823529412 0.1090909090909091 ];
-GMAT Results_in.Size = [ 0.721764705882353 1.227272727272727 ];
-GMAT Results_in.RelativeZOrder = 253;
+GMAT Results_in.UpperLeft = [ 0.14 0.2681818181818182 ];
+GMAT Results_in.Size = [ 0.7394117647058823 1.227272727272727 ];
+GMAT Results_in.RelativeZOrder = 208;
 GMAT Results_in.Maximized = false;
 GMAT Results_in.AddParameters = {1, JupiterExpress_OH.JupiterICRF.INC};
 GMAT Results_in.AddParameters = {2, JupiterExpress_OH.Jupiter.RadPer};
@@ -461,6 +462,7 @@ GMAT Rp_final = 0;
 GMAT Option_h = 1;
 GMAT DVx = 0;
 GMAT DVy = 0;
+
 
 
 
