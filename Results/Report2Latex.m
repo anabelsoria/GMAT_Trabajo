@@ -95,7 +95,90 @@ switch n
             legend()
         
         phi1 = acosd( dot(uv1,v1)/(norm(uv1)*norm(v1)) );
+    
+    case 4
+        disp('Maniobra cambio de inclinacion')
         
+        % Cargar datos: [x, y, z, t]
+        x_E_SOI = load('Reports/Report_X_SOI_Earth.dat');
+        x_MCI = load('Reports/Report_X_MCI_Sun.dat');
+        x_J_SOI = load('Reports/Report_X_MCI_Jupiter.dat');
+        
+        orbita_MCI_Sol = load('Reports/Report_SOIE_MCI_SOIJ_Sun.dat');
+        orbita_MCI_Sol = orbita_MCI_Sol(find(orbita_MCI_Sol(:,4)==x_E_SOI(end,end)):end,...
+            1:4);
+        
+        xEsoi = orbita_MCI_Sol(1,1:3);
+        xMCI = orbita_MCI_Sol(orbita_MCI_Sol(:,4)==x_MCI(end,end),1:3);
+        xJsoi = orbita_MCI_Sol(orbita_MCI_Sol(:,4)==x_J_SOI(end,end),1:3);
+        xFinal = orbita_MCI_Sol(end,1:3);
+        
+        %{
+        idx_E_MCI = [find(orbita_MCI_Sol(:,4)==x_E_SOI(end,end)):...
+            find(orbita_MCI_Sol(:,4)==x_MCI(end,end))];
+        orbita_E_MCI = orbita_MCI_Sol(idx_E_MCI,1:3);
+        
+        idx_MCI_J = [find(orbita_MCI_Sol(:,4)==x_MCI(end,end)):...
+            find(orbita_MCI_Sol(:,4)==x_J_SOI(end,end))];
+        orbita_MCI_J = orbita_MCI_Sol(idx_MCI_J,1:3);
+
+        orbita_J_F = orbita_MCI_Sol(find(orbita_MCI_Sol(:,4)==x_J_SOI(end,end)):end,1:3);
+            
+            plot3(orbita_E_MCI(:,1),orbita_E_MCI(:,2),orbita_E_MCI(:,3),'LineWidth',1,'DisplayName','Trayectoria') 
+            plot3(orbita_MCI_J(:,1),orbita_MCI_J(:,2),orbita_MCI_J(:,3),'LineWidth',1,'DisplayName','Trayectoria')
+            plot3(orbita_J_F(:,1),orbita_J_F(:,2),orbita_J_F(:,3),'LineWidth',1,'DisplayName','Trayectoria')
+        %}
+        h = figure();
+            hold on
+            plot3(orbita_MCI_Sol(:,1),orbita_MCI_Sol(:,2),orbita_MCI_Sol(:,3),'k','LineWidth',1,'DisplayName','Trayectoria')
+            scatter3(xEsoi(1,1),xEsoi(1,2),xEsoi(1,3), 75,'filled','DisplayName','Salida SOI Tierra') 
+            scatter3(xMCI(1,1),xMCI(1,2),xMCI(1,3), 75,'filled','DisplayName','Maniobra') 
+            scatter3(xJsoi(1,1),xJsoi(1,2),xJsoi(1,3), 75,'filled','DisplayName','Entrada SOI Jupiter') 
+            scatter3(xFinal(1,1),xFinal(1,2),xFinal(1,3), 75,'filled','DisplayName','Perigeo orbita final') 
+            legend()
+            
+            box on; grid on;
+            legend('Interpreter', 'Latex')
+            title('\textbf{\textit{Hiperbola de entrada} [km]}',...
+                  'Interpreter','latex', 'FontSize', 14)          
+            Save_as_PDF(h, 'Figuras/Trayectoria_HE')
+            
+            
+    case 5
+        disp('Maniobra cambio de inclinacion')
+        
+        opcion = 'OF_e-06_hp-1500';
+        
+        % Cargar datos: [x, y, z, t]
+        x_E_SOI = load(['Reports/O_Final/' opcion '_X_SOI_Earth.dat']);
+        x_MCI = load(['Reports/O_Final/' opcion '_X_MCI_Sun.dat']);
+        x_J_SOI = load(['Reports/O_Final/' opcion '_X_MCI_Jupiter.dat']);
+        
+        % vx, vy, vz [Jup], x [sol], x [Jup] 
+        v_Final = load(['Reports/O_Final/' opcion '_V_Hiper_Perig.dat']);
+        
+        orbita_MCI_Jupiter = load(['Reports/O_Final/' opcion '_Trayectoria.dat']);
+        
+        idx_JSOI = find(orbita_MCI_Jupiter(:,4) == x_J_SOI(end,end));
+        orbita_MCI_Jupiter(1:idx_JSOI,:) = [];
+        
+        idx_FO = find(orbita_MCI_Jupiter(:,1) == v_Final(end));
+        
+        orbita_JSOI = orbita_MCI_Jupiter(idx_FO-15:idx_FO,1:3);
+        orbita_FO = orbita_MCI_Jupiter(idx_FO:end,1:3);
+
+        h = figure();
+        hold on; axis equal; box on; grid on;
+        plot3(orbita_JSOI(:,1),orbita_JSOI(:,2),orbita_JSOI(:,3),'LineWidth',1,'DisplayName','Trayectoria entrada')
+        plot3(orbita_FO(:,1),orbita_FO(:,2),orbita_FO(:,3),'LineWidth',1,'DisplayName','Trayectoria Final')
+        scatter3(0,0,0, 10000, [204,102,0]/255,'filled','DisplayName','Jupiter') 
+        box on; grid on; axis equal
+        legend('Interpreter', 'Latex')
+        title('\textbf{\textit{Orbita final: e = 0.6, hp = 1500} [km]}',...
+              'Interpreter','latex', 'FontSize', 14)          
+        Save_as_PDF(h, 'Figuras/OF_e-06_hp-1500')
+
+            
     otherwise
         disp('other value')
 end
