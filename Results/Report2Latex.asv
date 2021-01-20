@@ -70,29 +70,22 @@ switch n
         x1 = h_600(1:3);    ux1 = x1/norm(x1);
         v1 = h_600(4:6);    nv1 = v1/norm(v1);
         
-        h_1500 = load('Reports/Report_XV_Reach_Final_Orbit_h2.dat');
-        x2 = h_1500(1:3);   ux2 = x2/norm(x2);
-        v2 = h_1500(4:6);   nv2 = v2/norm(v2);
-        
-        % Vector h normal al plano de la orbita
-        h1 = cross(ux1,nv1);% uh1 = h1/norm(h1);
-        h2 = cross(ux2,nv2);% uh2 = h2/norm(h2);
-        
-        % vector unitario velocidad en el perigeo orbita final
-        uv1 = cross(h1,ux1);
-        uv2 = cross(h2,ux2);
-        
         figure(1)
             hold on
-            plot3([0,ux1(1)],[0,ux1(2)],[0,ux1(3)],'-o','DisplayName','r')
-            plot3([ux1(1),nv1(1)],[ux1(2),nv1(2)],[ux1(3),nv1(3)],'-o','DisplayName','v')
-            plot3([ux1(1),h1(1)],[ux1(2),h1(2)],[ux1(3),h1(3)],'-o','DisplayName','h')
-            plot3([ux1(1),nv1(1)],[ux1(2),nv1(2)],[ux1(3),nv1(3)],'-o','DisplayName','v')
-            grid on
-            box on
-            axis equal
-            xlabel('x'); ylabel('y'); zlabel('z')
-            legend()
+            plot3([0,ux1(1)],[0,ux1(2)],[0,nv1(3)],'-o')
+            plot3([0,nv1(1)],[0,nv1(2)],[0,nv1(3)],'-o')
+        
+        h_1500 = load('Reports/Report_XV_Reach_Final_Orbit_h2.dat');
+        x2 = h_1500(1:3);   ux2 = x2/norm(x2);
+        v2 = h_1500(4:6);      
+        
+        % Vector h normal al plano de la orbita
+        h1 = cross(x1,v1); uh1 = h1/norm(h1);
+        h2 = cross(x2,v2); uh2 = h2/norm(h2);
+        
+        % vector unitario velocidad en el perigeo orbita final
+        uv1 = cross(uh1,ux1);
+        uv2 = cross(uh2,ux2);
         
         phi1 = acosd( dot(uv1,v1)/(norm(uv1)*norm(v1)) );
         

@@ -51,6 +51,8 @@ GMAT SC_PO.AttitudeCoordinateSystem = EarthMJ2000Eq;
 GMAT SC_PO.EulerAngleSequence = '321';
 
 
+
+
 %----------------------------------------
 %---------- ForceModels
 %----------------------------------------
@@ -117,7 +119,7 @@ Create OrbitView DefaultOrbitView;
 GMAT DefaultOrbitView.SolverIterations = Current;
 GMAT DefaultOrbitView.UpperLeft = [ 0 0 ];
 GMAT DefaultOrbitView.Size = [ 0.5 0.45 ];
-GMAT DefaultOrbitView.RelativeZOrder = 1218;
+GMAT DefaultOrbitView.RelativeZOrder = 8;
 GMAT DefaultOrbitView.Maximized = false;
 GMAT DefaultOrbitView.Add = {SC_PO, Earth};
 GMAT DefaultOrbitView.CoordinateSystem = EarthMJ2000Eq;
@@ -147,9 +149,9 @@ GMAT DefaultOrbitView.EnableConstellations = On;
 
 Create GroundTrackPlot DefaultGroundTrackPlot;
 GMAT DefaultGroundTrackPlot.SolverIterations = Current;
-GMAT DefaultGroundTrackPlot.UpperLeft = [ 0 0.4261363636363636 ];
+GMAT DefaultGroundTrackPlot.UpperLeft = [ 0 0.425 ];
 GMAT DefaultGroundTrackPlot.Size = [ 0.5 0.45 ];
-GMAT DefaultGroundTrackPlot.RelativeZOrder = 1220;
+GMAT DefaultGroundTrackPlot.RelativeZOrder = 13;
 GMAT DefaultGroundTrackPlot.Maximized = false;
 GMAT DefaultGroundTrackPlot.Add = {SC_PO};
 GMAT DefaultGroundTrackPlot.DataCollectFrequency = 1;
@@ -166,7 +168,7 @@ GMAT Report_PO_Trajectory.UpperLeft = [ 0.1064705882352941 0.2056818181818182 ];
 GMAT Report_PO_Trajectory.Size = [ 0.5988235294117648 0.7977272727272727 ];
 GMAT Report_PO_Trajectory.RelativeZOrder = 82;
 GMAT Report_PO_Trajectory.Maximized = false;
-GMAT Report_PO_Trajectory.Filename = 'C:\Users\danie\Desktop\GMAT_Trabajo\Results\Reports\Report_PO_Trajectory.dat';
+GMAT Report_PO_Trajectory.Filename = 'Report_PO_Trajectory.dat';
 GMAT Report_PO_Trajectory.Precision = 16;
 GMAT Report_PO_Trajectory.Add = {SC_PO.EarthMJ2000Eq.X, SC_PO.EarthMJ2000Eq.Y, SC_PO.EarthMJ2000Eq.Z, SC_PO.ElapsedSecs};
 GMAT Report_PO_Trajectory.WriteHeaders = false;
@@ -175,7 +177,7 @@ GMAT Report_PO_Trajectory.ZeroFill = Off;
 GMAT Report_PO_Trajectory.FixedWidth = true;
 GMAT Report_PO_Trajectory.Delimiter = ' ';
 GMAT Report_PO_Trajectory.ColumnWidth = 23;
-GMAT Report_PO_Trajectory.WriteReport = true;
+GMAT Report_PO_Trajectory.WriteReport = false;
 
 Create ReportFile ReportFile1;
 GMAT ReportFile1.SolverIterations = Current;
@@ -183,10 +185,10 @@ GMAT ReportFile1.UpperLeft = [ 0.01529411764705882 0.02954545454545454 ];
 GMAT ReportFile1.Size = [ 0.5994117647058823 0.7988636363636363 ];
 GMAT ReportFile1.RelativeZOrder = 1203;
 GMAT ReportFile1.Maximized = false;
-GMAT ReportFile1.Filename = 'ReportFile1.txt';
+GMAT ReportFile1.Filename = 'Report_RAAN.dat';
 GMAT ReportFile1.Precision = 16;
 GMAT ReportFile1.Add = {SC_PO.EarthMJ2000Eq.RAAN};
-GMAT ReportFile1.WriteHeaders = true;
+GMAT ReportFile1.WriteHeaders = false;
 GMAT ReportFile1.LeftJustify = On;
 GMAT ReportFile1.ZeroFill = Off;
 GMAT ReportFile1.FixedWidth = true;

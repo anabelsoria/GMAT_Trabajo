@@ -1,5 +1,5 @@
 %General Mission Analysis Tool(GMAT) Script
-%Created: 2021-01-19 13:42:43
+%Created: 2021-01-20 11:08:14
 
 
 %----------------------------------------
@@ -55,12 +55,12 @@ GMAT JupiterExpress_OH.DateFormat = UTCGregorian;
 GMAT JupiterExpress_OH.Epoch = '19 Jan 2030 11:59:28.000';
 GMAT JupiterExpress_OH.CoordinateSystem = EarthMJ2000Eq;
 GMAT JupiterExpress_OH.DisplayStateType = OutgoingAsymptote;
-GMAT JupiterExpress_OH.OutgoingRadPer = 7015.378524789859;
-GMAT JupiterExpress_OH.OutgoingC3Energy = -55.4232247531004;
-GMAT JupiterExpress_OH.OutgoingRHA = 81.5318602983709;
-GMAT JupiterExpress_OH.OutgoingDHA = 9.175961877476773;
-GMAT JupiterExpress_OH.OutgoingBVAZI = 80.96526202436785;
-GMAT JupiterExpress_OH.TA = 0;
+GMAT JupiterExpress_OH.OutgoingRadPer = 7015.378524789864;
+GMAT JupiterExpress_OH.OutgoingC3Energy = -55.42322475310037;
+GMAT JupiterExpress_OH.OutgoingRHA = 81.53186029837327;
+GMAT JupiterExpress_OH.OutgoingDHA = 9.175961877476382;
+GMAT JupiterExpress_OH.OutgoingBVAZI = 80.96526202436749;
+GMAT JupiterExpress_OH.TA = 360;
 GMAT JupiterExpress_OH.DryMass = 850;
 GMAT JupiterExpress_OH.Cd = 2.2;
 GMAT JupiterExpress_OH.Cr = 1.8;
@@ -93,6 +93,9 @@ GMAT JupiterExpress_OH.AttitudeDisplayStateType = 'Quaternion';
 GMAT JupiterExpress_OH.AttitudeRateDisplayStateType = 'AngularVelocity';
 GMAT JupiterExpress_OH.AttitudeCoordinateSystem = EarthMJ2000Eq;
 GMAT JupiterExpress_OH.EulerAngleSequence = '321';
+
+
+
 
 
 
@@ -262,9 +265,9 @@ GMAT DC1.Algorithm = NewtonRaphson;
 
 Create OrbitView SolarSystemView;
 GMAT SolarSystemView.SolverIterations = Current;
-GMAT SolarSystemView.UpperLeft = [ 0.32 0.1102272727272727 ];
-GMAT SolarSystemView.Size = [ 0.5941176470588235 0.7784090909090909 ];
-GMAT SolarSystemView.RelativeZOrder = 116;
+GMAT SolarSystemView.UpperLeft = [ 0.08286252354048965 0.1522727272727273 ];
+GMAT SolarSystemView.Size = [ 0.5919648462021343 0.7784090909090909 ];
+GMAT SolarSystemView.RelativeZOrder = 440;
 GMAT SolarSystemView.Maximized = false;
 GMAT SolarSystemView.Add = {JupiterExpress, JupiterExpress_OH, Sun, Earth, Jupiter};
 GMAT SolarSystemView.CoordinateSystem = SunICRF;
@@ -294,9 +297,9 @@ GMAT SolarSystemView.EnableConstellations = On;
 
 Create OrbitView JupiterView;
 GMAT JupiterView.SolverIterations = Current;
-GMAT JupiterView.UpperLeft = [ 0.2641176470588235 0.02727272727272727 ];
-GMAT JupiterView.Size = [ 0.6829411764705883 0.8636363636363636 ];
-GMAT JupiterView.RelativeZOrder = 118;
+GMAT JupiterView.UpperLeft = [ 0.2542372881355932 0.007954545454545454 ];
+GMAT JupiterView.Size = [ 0.6804770872567483 0.8636363636363636 ];
+GMAT JupiterView.RelativeZOrder = 432;
 GMAT JupiterView.Maximized = false;
 GMAT JupiterView.Add = {JupiterExpress, JupiterExpress_OH, Jupiter};
 GMAT JupiterView.CoordinateSystem = JupiterICRF;
@@ -325,9 +328,9 @@ GMAT JupiterView.EnableStars = On;
 GMAT JupiterView.EnableConstellations = On;
 
 Create DynamicDataDisplay Results;
-GMAT Results.UpperLeft = [ 0.1035294117647059 0.003409090909090909 ];
-GMAT Results.Size = [ 0.8870588235294118 1.227272727272727 ];
-GMAT Results.RelativeZOrder = 112;
+GMAT Results.UpperLeft = [ 0.2272441933458883 0.5840909090909091 ];
+GMAT Results.Size = [ 0.2517263025737602 0.4136363636363636 ];
+GMAT Results.RelativeZOrder = 428;
 GMAT Results.Maximized = false;
 GMAT Results.AddParameters = {1, VinfX};
 GMAT Results.AddParameters = {2, VinfY};
@@ -379,9 +382,9 @@ GMAT EarthView.EnableStars = On;
 GMAT EarthView.EnableConstellations = Off;
 
 Create DynamicDataDisplay Results_in;
-GMAT Results_in.UpperLeft = [ -0.1094117647058823 0.1159090909090909 ];
-GMAT Results_in.Size = [ 0.8364705882352941 1.227272727272727 ];
-GMAT Results_in.RelativeZOrder = 114;
+GMAT Results_in.UpperLeft = [ 0.2523540489642185 0.4375 ];
+GMAT Results_in.Size = [ 0.2096672944130571 0.2011363636363636 ];
+GMAT Results_in.RelativeZOrder = 436;
 GMAT Results_in.Maximized = false;
 GMAT Results_in.AddParameters = {1, JupiterExpress_OH.JupiterICRF.INC};
 GMAT Results_in.AddParameters = {2, JupiterExpress_OH.Jupiter.RadPer};
@@ -425,9 +428,9 @@ GMAT Report_HE_orbit.WriteReport = false;
 
 Create ReportFile Out_Orbit;
 GMAT Out_Orbit.SolverIterations = Current;
-GMAT Out_Orbit.UpperLeft = [ 0 0 ];
-GMAT Out_Orbit.Size = [ 0 0 ];
-GMAT Out_Orbit.RelativeZOrder = 0;
+GMAT Out_Orbit.UpperLeft = [ 0.0458254865034526 0.08749999999999999 ];
+GMAT Out_Orbit.Size = [ 0.5988700564971752 0.7977272727272727 ];
+GMAT Out_Orbit.RelativeZOrder = 304;
 GMAT Out_Orbit.Maximized = false;
 GMAT Out_Orbit.Filename = 'ReportFile1.txt';
 GMAT Out_Orbit.Precision = 16;
@@ -438,6 +441,54 @@ GMAT Out_Orbit.FixedWidth = true;
 GMAT Out_Orbit.Delimiter = ' ';
 GMAT Out_Orbit.ColumnWidth = 23;
 GMAT Out_Orbit.WriteReport = true;
+
+Create ReportFile Report_MCI;
+GMAT Report_MCI.SolverIterations = Current;
+GMAT Report_MCI.UpperLeft = [ -0.2805882352941176 0.1568181818181818 ];
+GMAT Report_MCI.Size = [ 1.137647058823529 0.7954545454545454 ];
+GMAT Report_MCI.RelativeZOrder = 843;
+GMAT Report_MCI.Maximized = false;
+GMAT Report_MCI.Filename = 'ReportFile1.txt';
+GMAT Report_MCI.Precision = 16;
+GMAT Report_MCI.WriteHeaders = true;
+GMAT Report_MCI.LeftJustify = On;
+GMAT Report_MCI.ZeroFill = Off;
+GMAT Report_MCI.FixedWidth = true;
+GMAT Report_MCI.Delimiter = ' ';
+GMAT Report_MCI.ColumnWidth = 23;
+GMAT Report_MCI.WriteReport = true;
+
+Create ReportFile Report_XV_Reach_Final_Orbit;
+GMAT Report_XV_Reach_Final_Orbit.SolverIterations = Current;
+GMAT Report_XV_Reach_Final_Orbit.UpperLeft = [ 0.1370588235294118 0.2647727272727273 ];
+GMAT Report_XV_Reach_Final_Orbit.Size = [ 0.5988235294117648 0.7977272727272727 ];
+GMAT Report_XV_Reach_Final_Orbit.RelativeZOrder = 137;
+GMAT Report_XV_Reach_Final_Orbit.Maximized = false;
+GMAT Report_XV_Reach_Final_Orbit.Filename = 'Report_XV_Reach_Final_Orbit.dat';
+GMAT Report_XV_Reach_Final_Orbit.Precision = 16;
+GMAT Report_XV_Reach_Final_Orbit.WriteHeaders = false;
+GMAT Report_XV_Reach_Final_Orbit.LeftJustify = On;
+GMAT Report_XV_Reach_Final_Orbit.ZeroFill = Off;
+GMAT Report_XV_Reach_Final_Orbit.FixedWidth = true;
+GMAT Report_XV_Reach_Final_Orbit.Delimiter = ' ';
+GMAT Report_XV_Reach_Final_Orbit.ColumnWidth = 23;
+GMAT Report_XV_Reach_Final_Orbit.WriteReport = true;
+
+Create ReportFile Reach_Earth_SOI;
+GMAT Reach_Earth_SOI.SolverIterations = Current;
+GMAT Reach_Earth_SOI.UpperLeft = [ 0.04896421845574388 0.08863636363636364 ];
+GMAT Reach_Earth_SOI.Size = [ 0.5994978028876334 0.7988636363636363 ];
+GMAT Reach_Earth_SOI.RelativeZOrder = 376;
+GMAT Reach_Earth_SOI.Maximized = false;
+GMAT Reach_Earth_SOI.Filename = 'ReportFile1.txt';
+GMAT Reach_Earth_SOI.Precision = 16;
+GMAT Reach_Earth_SOI.WriteHeaders = true;
+GMAT Reach_Earth_SOI.LeftJustify = On;
+GMAT Reach_Earth_SOI.ZeroFill = Off;
+GMAT Reach_Earth_SOI.FixedWidth = true;
+GMAT Reach_Earth_SOI.Delimiter = ' ';
+GMAT Reach_Earth_SOI.ColumnWidth = 23;
+GMAT Reach_Earth_SOI.WriteReport = true;
 
 %----------------------------------------
 %---------- Functions
@@ -480,9 +531,12 @@ GMAT BT = 0;
 GMAT Option_Orbit = 3;
 GMAT e_final = 0;
 GMAT Rp_final = 0;
-GMAT Option_h = 1;
+GMAT Option_h = 2;
 GMAT DVx = 0;
 GMAT DVy = 0;
+
+
+
 
 
 
@@ -610,6 +664,9 @@ Target 'ReachFinalOrbit' DC1 {SolveMode = Solve, ExitMode = DiscardAndContinue, 
    Achieve 'AchieveRp_final' DC1(JupiterExpress_OH.Jupiter.RadPer = Rp_final, {Tolerance = 10});
    Achieve 'AchieveINC_final' DC1(JupiterExpress_OH.JupiterICRF.INC = INC_final, {Tolerance = 0.1});
 EndTarget;  % For targeter DC1
+Stop;
+Report 'Report_MCI' Report_MCI MCI.SunICRF.Element1 MCI.SunICRF.Element2 MCI.SunICRF.Element3 Rp_final;
+Report 'Report_XV_Reach_Final_Orbit' Report_XV_Reach_Final_Orbit JupiterExpress_OH.JupiterICRF.X JupiterExpress_OH.JupiterICRF.Y JupiterExpress_OH.JupiterICRF.Z JupiterExpress_OH.JupiterICRF.VX JupiterExpress_OH.JupiterICRF.VY JupiterExpress_OH.JupiterICRF.VZ;
 UpdateDynamicData Results_in;
 If 'Fly_by' Option_Orbit == 1.0
    Propagate 'Prop_Fly_by' NearJupiter(JupiterExpress_OH) {JupiterExpress_OH.Jupiter.RMAG = 48.2e6, OrbitColor = [128 0 128]};
