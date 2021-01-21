@@ -1,5 +1,5 @@
 %General Mission Analysis Tool(GMAT) Script
-%Created: 2021-01-20 14:17:21
+%Created: 2021-01-20 22:14:50
 
 
 %----------------------------------------
@@ -55,11 +55,11 @@ GMAT JupiterExpress_OH.DateFormat = UTCGregorian;
 GMAT JupiterExpress_OH.Epoch = '19 Jan 2030 11:59:28.000';
 GMAT JupiterExpress_OH.CoordinateSystem = EarthMJ2000Eq;
 GMAT JupiterExpress_OH.DisplayStateType = OutgoingAsymptote;
-GMAT JupiterExpress_OH.OutgoingRadPer = 7015.378524789868;
-GMAT JupiterExpress_OH.OutgoingC3Energy = -55.42322475310035;
-GMAT JupiterExpress_OH.OutgoingRHA = 81.53186029837276;
-GMAT JupiterExpress_OH.OutgoingDHA = 9.175961877476439;
-GMAT JupiterExpress_OH.OutgoingBVAZI = 80.9652620243676;
+GMAT JupiterExpress_OH.OutgoingRadPer = 7015.378524789872;
+GMAT JupiterExpress_OH.OutgoingC3Energy = -55.42322475310031;
+GMAT JupiterExpress_OH.OutgoingRHA = 81.5318602983707;
+GMAT JupiterExpress_OH.OutgoingDHA = 9.175961877476691;
+GMAT JupiterExpress_OH.OutgoingBVAZI = 80.96526202436802;
 GMAT JupiterExpress_OH.TA = 0;
 GMAT JupiterExpress_OH.DryMass = 850;
 GMAT JupiterExpress_OH.Cd = 2.2;
@@ -93,6 +93,9 @@ GMAT JupiterExpress_OH.AttitudeDisplayStateType = 'Quaternion';
 GMAT JupiterExpress_OH.AttitudeRateDisplayStateType = 'AngularVelocity';
 GMAT JupiterExpress_OH.AttitudeCoordinateSystem = EarthMJ2000Eq;
 GMAT JupiterExpress_OH.EulerAngleSequence = '321';
+
+
+
 
 
 
@@ -268,9 +271,9 @@ GMAT DC1.Algorithm = NewtonRaphson;
 
 Create OrbitView SolarSystemView;
 GMAT SolarSystemView.SolverIterations = Current;
-GMAT SolarSystemView.UpperLeft = [ 0.06411764705882353 0.1159090909090909 ];
-GMAT SolarSystemView.Size = [ 0.591764705882353 0.7784090909090909 ];
-GMAT SolarSystemView.RelativeZOrder = 1721;
+GMAT SolarSystemView.UpperLeft = [ 0.06070496083550914 0.1090909090909091 ];
+GMAT SolarSystemView.Size = [ 0.5913838120104439 0.7784090909090909 ];
+GMAT SolarSystemView.RelativeZOrder = 122;
 GMAT SolarSystemView.Maximized = false;
 GMAT SolarSystemView.Add = {JupiterExpress, JupiterExpress_OH, Sun, Earth, Jupiter};
 GMAT SolarSystemView.CoordinateSystem = SunICRF;
@@ -300,9 +303,9 @@ GMAT SolarSystemView.EnableConstellations = Off;
 
 Create OrbitView JupiterView;
 GMAT JupiterView.SolverIterations = Current;
-GMAT JupiterView.UpperLeft = [ 0.2535294117647059 0.02045454545454545 ];
-GMAT JupiterView.Size = [ 0.6805882352941176 0.8636363636363636 ];
-GMAT JupiterView.RelativeZOrder = 1717;
+GMAT JupiterView.UpperLeft = [ 0.25 0.01363636363636364 ];
+GMAT JupiterView.Size = [ 0.6801566579634465 0.8636363636363636 ];
+GMAT JupiterView.RelativeZOrder = 118;
 GMAT JupiterView.Maximized = false;
 GMAT JupiterView.Add = {JupiterExpress, JupiterExpress_OH, Jupiter};
 GMAT JupiterView.CoordinateSystem = JupiterICRF;
@@ -331,9 +334,9 @@ GMAT JupiterView.EnableStars = On;
 GMAT JupiterView.EnableConstellations = Off;
 
 Create DynamicDataDisplay Results;
-GMAT Results.UpperLeft = [ 0.1441176470588235 0.5636363636363636 ];
-GMAT Results.Size = [ 0.5341176470588235 1.15 ];
-GMAT Results.RelativeZOrder = 1729;
+GMAT Results.UpperLeft = [ 0.1409921671018277 0.5568181818181818 ];
+GMAT Results.Size = [ 0.5913838120104439 1.227272727272727 ];
+GMAT Results.RelativeZOrder = 150;
 GMAT Results.Maximized = false;
 GMAT Results.AddParameters = {1, VinfX};
 GMAT Results.AddParameters = {2, VinfY};
@@ -385,9 +388,9 @@ GMAT EarthView.EnableStars = On;
 GMAT EarthView.EnableConstellations = Off;
 
 Create DynamicDataDisplay Results_in;
-GMAT Results_in.UpperLeft = [ 0.1276470588235294 0.6352272727272728 ];
-GMAT Results_in.Size = [ 0.4923529411764706 1.044318181818182 ];
-GMAT Results_in.RelativeZOrder = 1725;
+GMAT Results_in.UpperLeft = [ 0.1240208877284595 0.6284090909090909 ];
+GMAT Results_in.Size = [ 0.5489556135770235 1.227272727272727 ];
+GMAT Results_in.RelativeZOrder = 148;
 GMAT Results_in.Maximized = false;
 GMAT Results_in.AddParameters = {1, JupiterExpress_OH.JupiterICRF.INC};
 GMAT Results_in.AddParameters = {2, JupiterExpress_OH.Jupiter.RadPer};
@@ -414,9 +417,9 @@ GMAT Report_Out_Orbit.WriteReport = true;
 
 Create ReportFile Report_MCI;
 GMAT Report_MCI.SolverIterations = Current;
-GMAT Report_MCI.UpperLeft = [ -0.28 0.1556818181818182 ];
-GMAT Report_MCI.Size = [ 1.136470588235294 0.7943181818181818 ];
-GMAT Report_MCI.RelativeZOrder = 101;
+GMAT Report_MCI.UpperLeft = [ -0.1632270168855535 0.1306818181818182 ];
+GMAT Report_MCI.Size = [ 1.133208255159475 0.7909090909090909 ];
+GMAT Report_MCI.RelativeZOrder = 320;
 GMAT Report_MCI.Maximized = false;
 GMAT Report_MCI.Filename = 'Report_MCI.dat';
 GMAT Report_MCI.Precision = 16;
@@ -529,9 +532,9 @@ GMAT Report_X_SOI_Earth.WriteReport = true;
 
 Create ReportFile Report_X_MCI_Sun;
 GMAT Report_X_MCI_Sun.SolverIterations = Current;
-GMAT Report_X_MCI_Sun.UpperLeft = [ 0.1370588235294118 0.2647727272727273 ];
-GMAT Report_X_MCI_Sun.Size = [ 0.5988235294117648 0.7977272727272727 ];
-GMAT Report_X_MCI_Sun.RelativeZOrder = 459;
+GMAT Report_X_MCI_Sun.UpperLeft = [ 0.1369606003752345 0.2636363636363636 ];
+GMAT Report_X_MCI_Sun.Size = [ 0.5978736710444027 0.7965909090909091 ];
+GMAT Report_X_MCI_Sun.RelativeZOrder = 328;
 GMAT Report_X_MCI_Sun.Maximized = false;
 GMAT Report_X_MCI_Sun.Filename = 'C:\Users\danie\Desktop\GMAT_Trabajo\Results\Reports\Report_X_MCI_Sun.dat';
 GMAT Report_X_MCI_Sun.Precision = 16;
@@ -561,9 +564,9 @@ GMAT Report_X_SOI_Jupiter.WriteReport = true;
 
 Create ReportFile Report_V_Hiper_Perig;
 GMAT Report_V_Hiper_Perig.SolverIterations = Current;
-GMAT Report_V_Hiper_Perig.UpperLeft = [ 0.07470588235294118 0.1443181818181818 ];
-GMAT Report_V_Hiper_Perig.Size = [ 0.5976470588235294 0.7954545454545454 ];
-GMAT Report_V_Hiper_Perig.RelativeZOrder = 1105;
+GMAT Report_V_Hiper_Perig.UpperLeft = [ 0.07245430809399478 0.1397727272727273 ];
+GMAT Report_V_Hiper_Perig.Size = [ 0.5953002610966057 0.7909090909090909 ];
+GMAT Report_V_Hiper_Perig.RelativeZOrder = 138;
 GMAT Report_V_Hiper_Perig.Maximized = false;
 GMAT Report_V_Hiper_Perig.Filename = 'C:\Users\danie\Desktop\GMAT_Trabajo\Results\Reports\Report_V_Hiper_Perig.dat';
 GMAT Report_V_Hiper_Perig.Precision = 16;
@@ -574,6 +577,22 @@ GMAT Report_V_Hiper_Perig.FixedWidth = true;
 GMAT Report_V_Hiper_Perig.Delimiter = ' ';
 GMAT Report_V_Hiper_Perig.ColumnWidth = 23;
 GMAT Report_V_Hiper_Perig.WriteReport = true;
+
+Create ReportFile Report_Impulso_MEO;
+GMAT Report_Impulso_MEO.SolverIterations = Current;
+GMAT Report_Impulso_MEO.UpperLeft = [ 0.01501305483028721 0.02727272727272727 ];
+GMAT Report_Impulso_MEO.Size = [ 0.597911227154047 0.7965909090909091 ];
+GMAT Report_Impulso_MEO.RelativeZOrder = 41;
+GMAT Report_Impulso_MEO.Maximized = false;
+GMAT Report_Impulso_MEO.Filename = 'C:\Users\danie\Desktop\GMAT_Trabajo\Results\Reports\Report_Impulso_MEO.dat';
+GMAT Report_Impulso_MEO.Precision = 16;
+GMAT Report_Impulso_MEO.WriteHeaders = false;
+GMAT Report_Impulso_MEO.LeftJustify = On;
+GMAT Report_Impulso_MEO.ZeroFill = Off;
+GMAT Report_Impulso_MEO.FixedWidth = true;
+GMAT Report_Impulso_MEO.Delimiter = ' ';
+GMAT Report_Impulso_MEO.ColumnWidth = 23;
+GMAT Report_Impulso_MEO.WriteReport = true;
 
 %----------------------------------------
 %---------- Functions
@@ -613,12 +632,15 @@ GMAT INC_final = 40;
 GMAT phi_in = 0;
 GMAT BR = 0;
 GMAT BT = 0;
-GMAT Option_Orbit = 3;
+GMAT Option_Orbit = 1;
 GMAT e_final = 0;
 GMAT Rp_final = 0;
 GMAT Option_h = 1;
 GMAT DVx = 0;
 GMAT DVy = 0;
+
+
+
 
 
 
@@ -724,9 +746,9 @@ GMAT 'TOF_MCM' TOF_MCM = TOF/2;
 Propagate 'PropToMCM' DeepSpaceProp(JupiterExpress_OH) {JupiterExpress_OH.ElapsedDays = TOF_MCM};
 Report 'Report_X_MCI_Sun' Report_X_MCI_Sun JupiterExpress_OH.SunICRF.X JupiterExpress_OH.SunICRF.Y JupiterExpress_OH.SunICRF.Z JupiterExpress_OH.ElapsedDays;
 Target 'ReachFinalOrbit' DC1 {SolveMode = Solve, ExitMode = DiscardAndContinue, ShowProgressWindow = true};
-   Vary 'VaryVx' DC1(MCI.Element1 = -0.1775758405374545, {Perturbation = 0.0001, Lower = -3, Upper = 3, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
-   Vary 'VaryVy' DC1(MCI.Element2 = -0.07751859331299771, {Perturbation = 0.0001, Lower = -3, Upper = 3, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
-   Vary 'VaryVz' DC1(MCI.Element3 = 0.01515223585763994, {Perturbation = 0.0001, Lower = -3, Upper = 3, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+   Vary 'VaryVx' DC1(MCI.Element1 = -0.1775064306399989, {Perturbation = 0.0001, Lower = -3, Upper = 3, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+   Vary 'VaryVy' DC1(MCI.Element2 = -0.07741396394462767, {Perturbation = 0.0001, Lower = -3, Upper = 3, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+   Vary 'VaryVz' DC1(MCI.Element3 = 0.01514552284164811, {Perturbation = 0.0001, Lower = -3, Upper = 3, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
    Maneuver 'MCM' MCI(JupiterExpress_OH);
    Propagate 'PropToJupSOI' DeepSpaceProp(JupiterExpress_OH) {JupiterExpress_OH.Jupiter.RMAG = 48.2e6, OrbitColor = [255 0 255]};
    Report 'Report_X_SOI_Jupiter' Report_X_SOI_Jupiter JupiterExpress_OH.SunICRF.X JupiterExpress_OH.SunICRF.Y JupiterExpress_OH.SunICRF.Z JupiterExpress_OH.ElapsedDays;
@@ -754,7 +776,7 @@ Target 'ReachFinalOrbit' DC1 {SolveMode = Solve, ExitMode = DiscardAndContinue, 
    Achieve 'AchieveRp_final' DC1(JupiterExpress_OH.Jupiter.RadPer = Rp_final, {Tolerance = 10});
    Achieve 'AchieveINC_final' DC1(JupiterExpress_OH.JupiterICRF.INC = INC_final, {Tolerance = 0.1});
 EndTarget;  % For targeter DC1
-Report 'Report_MCI' Report_MCI MCI.SunICRF.Element1 MCI.SunICRF.Element2 MCI.SunICRF.Element3 Rp_final;
+Report 'Report_MCI' Report_MCI MCI.Element1 MCI.Element2 MCI.Element3 Rp_final;
 Report 'Report_XV_Reach_Final_Orbit' Report_XV_Reach_Final_Orbit JupiterExpress_OH.JupiterICRF.X JupiterExpress_OH.JupiterICRF.Y JupiterExpress_OH.JupiterICRF.Z JupiterExpress_OH.JupiterICRF.VX JupiterExpress_OH.JupiterICRF.VY JupiterExpress_OH.JupiterICRF.VZ;
 Report 'Report_V_Hiper_Perig' Report_V_Hiper_Perig JupiterExpress_OH.JupiterICRF.VX JupiterExpress_OH.JupiterICRF.VY JupiterExpress_OH.JupiterICRF.VZ JupiterExpress_OH.SunICRF.X JupiterExpress_OH.JupiterICRF.X;
 UpdateDynamicData Results_in;
@@ -763,12 +785,13 @@ If 'Fly_by' Option_Orbit == 1.0
 Else 'Else Elliptic'
    GMAT 'AnalyticCalculation2' [DVx, DVy] = AnalyticImpulse(e_final, Rp_final, JupiterExpress_OH.JupiterICRF.VX, JupiterExpress_OH.JupiterICRF.VY, JupiterExpress_OH.JupiterICRF.VZ, JupiterExpress_OH.Jupiter.ECC);
    Target 'Eliptic_Orbit' DC1 {SolveMode = Solve, ExitMode = DiscardAndContinue, ShowProgressWindow = true};
-      Vary 'VaryVx' DC1(MEO.Element1 = -6.612306988150789, {Perturbation = 0.0001, Lower = -20, Upper = 10, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
-      Vary 'VaryVy' DC1(MEO.Element2 = 8.145214346009365e-05, {Perturbation = 0.0001, Lower = -10, Upper = 10, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
-      Vary 'VaryVz' DC1(MEO.Element3 = 2.465218654932614e-05, {Perturbation = 0.0001, Lower = -10, Upper = 10, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+      Vary 'VaryVx' DC1(MEO.Element1 = -15.61230698815076, {Perturbation = 0.0001, Lower = -20, Upper = 10, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+      Vary 'VaryVy' DC1(MEO.Element2 = 3.689113923189938e-05, {Perturbation = 0.0001, Lower = -10, Upper = 10, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+      Vary 'VaryVz' DC1(MEO.Element3 = -2.482977946485513e-06, {Perturbation = 0.0001, Lower = -10, Upper = 10, MaxStep = 0.2, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
       Maneuver 'MEO' MEO(JupiterExpress_OH);
       Propagate 'PropTA' NearJupiter(JupiterExpress_OH) {JupiterExpress_OH.ElapsedDays = 3, OrbitColor = [255 0 128]};
       Achieve 'AchieveEcc_final' DC1(JupiterExpress_OH.Jupiter.ECC = e_final, {Tolerance = 0.01});
       Achieve 'AchieveINC_final' DC1(JupiterExpress_OH.JupiterICRF.INC = INC_final, {Tolerance = 0.01});
    EndTarget;  % For targeter DC1
+   Report 'Report_Impulso_MEO' Report_Impulso_MEO MEO.Element1 MEO.Element2 MEO.Element3 JupiterExpress_OH.JupiterICRF.VX JupiterExpress_OH.JupiterICRF.VY JupiterExpress_OH.JupiterICRF.VZ;
 EndIf;
