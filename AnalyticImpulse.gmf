@@ -1,27 +1,37 @@
 % Impulso de llegada
 
-function [x, y] = AnalyticImpulse(e_final, Rp_final, Vx, Vy, Vz, e_hiperbola)
+function [x, y] = AnalyticImpulse(Rp_final, Vx, Vy, Vz, e1, e2)
 
-Create Variable mu_J a V_elliptic V_hiperbola phi gamma_elipse gamma_hiperbola x y mod
+Create Variable mu_J a V_elliptic V_hiperbola x y
 
 BeginMissionSequence
 
 % Datos
 mu_J = 1.266e8;
 
-% Orbita e = 0.6
+% CASO e = 0.6
 
 % Velocidad inicial (en hiperbola)
 V_hiperbola = sqrt(Vx^2 + Vy^2 + Vz^2);
 %gamma_hiperbola = 
 
 % Velocidad final (en elipse)
-a = Rp_final/(1-e_final)
+a = Rp_final/(1-e1)
 V_elliptic = sqrt(2*mu_J*(1/Rp_final-1/(2*a)));
-%gamma_elipse = acos(sqrt(a^2*(1-e^2)/(Rp_final*(2*a-Rp_final))))
 
 % Impulso
-mod = V_elliptic - V_hiperbola;
-phi = -45; %gamma_hiperbola - gamma_elipse;
-x = mod*cos(DegToRad(phi));
-y = mod*sin(DegToRad(phi));
+x = V_elliptic - V_hiperbola;
+
+
+% CASO e = 0.1
+
+% Velocidad inicial (en hiperbola)
+V_hiperbola = sqrt(Vx^2 + Vy^2 + Vz^2);
+%gamma_hiperbola = 
+
+% Velocidad final (en elipse)
+a = Rp_final/(1-e2)
+V_elliptic = sqrt(2*mu_J*(1/Rp_final-1/(2*a)));
+
+% Impulso
+y = V_elliptic - V_hiperbola;

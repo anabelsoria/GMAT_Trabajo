@@ -56,10 +56,10 @@ GMAT JupiterExpress_OH.Epoch = '19 Jan 2030 11:59:28.000';
 GMAT JupiterExpress_OH.CoordinateSystem = EarthMJ2000Eq;
 GMAT JupiterExpress_OH.DisplayStateType = OutgoingAsymptote;
 GMAT JupiterExpress_OH.OutgoingRadPer = 7015.378524789864;
-GMAT JupiterExpress_OH.OutgoingC3Energy = -55.42322475310036;
-GMAT JupiterExpress_OH.OutgoingRHA = 81.53186029837302;
-GMAT JupiterExpress_OH.OutgoingDHA = 9.175961877476421;
-GMAT JupiterExpress_OH.OutgoingBVAZI = 80.96526202436753;
+GMAT JupiterExpress_OH.OutgoingC3Energy = -55.42322475310037;
+GMAT JupiterExpress_OH.OutgoingRHA = 81.53186029837327;
+GMAT JupiterExpress_OH.OutgoingDHA = 9.175961877476382;
+GMAT JupiterExpress_OH.OutgoingBVAZI = 80.96526202436749;
 GMAT JupiterExpress_OH.TA = 360;
 GMAT JupiterExpress_OH.DryMass = 850;
 GMAT JupiterExpress_OH.Cd = 2.2;
@@ -93,6 +93,7 @@ GMAT JupiterExpress_OH.AttitudeDisplayStateType = 'Quaternion';
 GMAT JupiterExpress_OH.AttitudeRateDisplayStateType = 'AngularVelocity';
 GMAT JupiterExpress_OH.AttitudeCoordinateSystem = EarthMJ2000Eq;
 GMAT JupiterExpress_OH.EulerAngleSequence = '321';
+
 
 
 
@@ -463,7 +464,7 @@ GMAT Report_XV_Reach_Final_Orbit.UpperLeft = [ 0.1370588235294118 0.264772727272
 GMAT Report_XV_Reach_Final_Orbit.Size = [ 0.5988235294117648 0.7977272727272727 ];
 GMAT Report_XV_Reach_Final_Orbit.RelativeZOrder = 137;
 GMAT Report_XV_Reach_Final_Orbit.Maximized = false;
-GMAT Report_XV_Reach_Final_Orbit.Filename = 'C:\Users\danie\Desktop\GMAT_Trabajo\Results\Reports\Report_XV_Reach_Final_Orbit.dat';
+GMAT Report_XV_Reach_Final_Orbit.Filename = 'Report_XV_Reach_Final_Orbit.dat';
 GMAT Report_XV_Reach_Final_Orbit.Precision = 16;
 GMAT Report_XV_Reach_Final_Orbit.WriteHeaders = false;
 GMAT Report_XV_Reach_Final_Orbit.LeftJustify = On;
@@ -533,6 +534,7 @@ GMAT Rp_final = 0;
 GMAT Option_h = 2;
 GMAT DVx = 0;
 GMAT DVy = 0;
+
 
 
 
