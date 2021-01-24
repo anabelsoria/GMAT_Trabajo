@@ -1,5 +1,5 @@
 %General Mission Analysis Tool(GMAT) Script
-%Created: 2021-01-24 23:29:21
+%Created: 2021-01-24 22:54:58
 
 
 %----------------------------------------
@@ -147,7 +147,7 @@ GMAT JupiterExpress_Finite.EulerAngleSequence = '321';
 %----------------------------------------
 
 Create ChemicalTank MainTank;
-GMAT MainTank.AllowNegativeFuelMass = true;
+GMAT MainTank.AllowNegativeFuelMass = false;
 GMAT MainTank.FuelMass = 0;
 GMAT MainTank.Pressure = 1500;
 GMAT MainTank.Temperature = 20;
@@ -293,7 +293,6 @@ GMAT Thruster_NearJup.K13 = 0;
 GMAT Thruster_NearJup.K14 = 0;
 GMAT Thruster_NearJup.K15 = 0;
 GMAT Thruster_NearJup.K16 = 0;
-
 
 
 
@@ -504,9 +503,9 @@ GMAT DC1.Algorithm = NewtonRaphson;
 
 Create OrbitView SolarSystemView;
 GMAT SolarSystemView.SolverIterations = Current;
-GMAT SolarSystemView.UpperLeft = [ 0 0.4208084824387011 ];
-GMAT SolarSystemView.Size = [ 0.3330408073716543 0.4976805831676607 ];
-GMAT SolarSystemView.RelativeZOrder = 3054;
+GMAT SolarSystemView.UpperLeft = [ 0 0.4380384360503645 ];
+GMAT SolarSystemView.Size = [ 0.3329187396351576 0.4976805831676607 ];
+GMAT SolarSystemView.RelativeZOrder = 1999;
 GMAT SolarSystemView.Maximized = false;
 GMAT SolarSystemView.Add = {JupiterExpress, JupiterExpress_OH, JupiterExpress_Finite, Sun, Earth, Jupiter};
 GMAT SolarSystemView.CoordinateSystem = SunICRF;
@@ -536,9 +535,9 @@ GMAT SolarSystemView.EnableConstellations = On;
 
 Create OrbitView JupiterView;
 GMAT JupiterView.SolverIterations = Current;
-GMAT JupiterView.UpperLeft = [ 0.6222027204914437 0 ];
-GMAT JupiterView.Size = [ 0.3326020184291356 0.3313452617627568 ];
-GMAT JupiterView.RelativeZOrder = 3046;
+GMAT JupiterView.UpperLeft = [ 0.6330845771144279 0 ];
+GMAT JupiterView.Size = [ 0.3325041459369817 0.3313452617627568 ];
+GMAT JupiterView.RelativeZOrder = 2007;
 GMAT JupiterView.Maximized = false;
 GMAT JupiterView.Add = {JupiterExpress, JupiterExpress_OH, JupiterExpress_Finite, Jupiter};
 GMAT JupiterView.CoordinateSystem = JupiterICRF;
@@ -567,9 +566,9 @@ GMAT JupiterView.EnableStars = On;
 GMAT JupiterView.EnableConstellations = On;
 
 Create DynamicDataDisplay Results;
-GMAT Results.UpperLeft = [ 0.2566915313734094 0.3339960238568588 ];
-GMAT Results.Size = [ 0.5870996050899517 1.153081510934394 ];
-GMAT Results.RelativeZOrder = 3058;
+GMAT Results.UpperLeft = [ 0.03524046434494196 0.4108681245858185 ];
+GMAT Results.Size = [ 0.5228026533996684 1.151756129887343 ];
+GMAT Results.RelativeZOrder = 2015;
 GMAT Results.Maximized = false;
 GMAT Results.AddParameters = {1, VinfX};
 GMAT Results.AddParameters = {2, VinfY};
@@ -604,9 +603,9 @@ GMAT Results.CritColor = [255 0 0];
 
 Create OrbitView EarthView;
 GMAT EarthView.SolverIterations = Current;
-GMAT EarthView.UpperLeft = [ 0.2900394910048267 0 ];
-GMAT EarthView.Size = [ 0.3339183852566915 0.4976805831676607 ];
-GMAT EarthView.RelativeZOrder = 3050;
+GMAT EarthView.UpperLeft = [ 0.3009950248756219 0 ];
+GMAT EarthView.Size = [ 0.3337479270315091 0.4976805831676607 ];
+GMAT EarthView.RelativeZOrder = 2003;
 GMAT EarthView.Maximized = false;
 GMAT EarthView.Add = {JupiterExpress, JupiterExpress_OH, JupiterExpress_Finite, Earth};
 GMAT EarthView.CoordinateSystem = EarthMJ2000Eq;
@@ -635,9 +634,9 @@ GMAT EarthView.EnableStars = On;
 GMAT EarthView.EnableConstellations = Off;
 
 Create DynamicDataDisplay Results_in;
-GMAT Results_in.UpperLeft = [ 0.4602896007020623 0.393638170974155 ];
-GMAT Results_in.Size = [ 0.4475647213690215 0.8263750828363154 ];
-GMAT Results_in.RelativeZOrder = 3038;
+GMAT Results_in.UpperLeft = [ 0.4614427860696517 0.3956262425447316 ];
+GMAT Results_in.Size = [ 0.419983416252073 0.7170311464546058 ];
+GMAT Results_in.RelativeZOrder = 7;
 GMAT Results_in.Maximized = false;
 GMAT Results_in.AddParameters = {1, JupiterExpress_OH.JupiterICRF.INC};
 GMAT Results_in.AddParameters = {2, JupiterExpress_OH.Jupiter.RadPer};
@@ -795,9 +794,9 @@ GMAT Report_DV_01.ColumnWidth = 23;
 GMAT Report_DV_01.WriteReport = true;
 
 Create DynamicDataDisplay Table_DV_Mp;
-GMAT Table_DV_Mp.UpperLeft = [ 0.04124616059675296 0.05301524188204108 ];
-GMAT Table_DV_Mp.Size = [ 0.5024133391838526 1.153081510934394 ];
-GMAT Table_DV_Mp.RelativeZOrder = 3066;
+GMAT Table_DV_Mp.UpperLeft = [ 0.4647595356550581 0.4035785288270378 ];
+GMAT Table_DV_Mp.Size = [ 0.4286898839137645 0.9257786613651425 ];
+GMAT Table_DV_Mp.RelativeZOrder = 2099;
 GMAT Table_DV_Mp.Maximized = false;
 GMAT Table_DV_Mp.AddParameters = {1, DV_salida};
 GMAT Table_DV_Mp.AddParameters = {2, DV_MCM};
@@ -827,9 +826,9 @@ GMAT Table_DV_Mp.WarnColor = [218 165 32];
 GMAT Table_DV_Mp.CritColor = [255 0 0];
 
 Create DynamicDataDisplay Table_tiempos;
-GMAT Table_tiempos.UpperLeft = [ 0.6362439666520404 0.3320079522862823 ];
-GMAT Table_tiempos.Size = [ 0.2150065818341378 0.3856858846918489 ];
-GMAT Table_tiempos.RelativeZOrder = 3042;
+GMAT Table_tiempos.UpperLeft = [ 0.8126036484245439 0.3412856196156395 ];
+GMAT Table_tiempos.Size = [ 0.1873963515754561 0.2763419483101391 ];
+GMAT Table_tiempos.RelativeZOrder = 32;
 GMAT Table_tiempos.Maximized = false;
 GMAT Table_tiempos.AddParameters = {1, MaxStep_tb};
 GMAT Table_tiempos.AddParameters = {2, tb_up_limit};
@@ -840,25 +839,15 @@ GMAT Table_tiempos.RowTextColors = {3, [0 0 0]};
 GMAT Table_tiempos.WarnColor = [218 165 32];
 GMAT Table_tiempos.CritColor = [255 0 0];
 
-Create DynamicDataDisplay Table_Mf;
-GMAT Table_Mf.UpperLeft = [ 0.5651601579640193 0.6560636182902585 ];
-GMAT Table_Mf.Size = [ 0.2031592803861343 0.1676607024519549 ];
-GMAT Table_Mf.RelativeZOrder = 3074;
-GMAT Table_Mf.Maximized = false;
-GMAT Table_Mf.AddParameters = {1, JupiterExpress_Finite.MainTank.FuelMass};
-GMAT Table_Mf.RowTextColors = {1, [0 0 0]};
-GMAT Table_Mf.WarnColor = [218 165 32];
-GMAT Table_Mf.CritColor = [255 0 0];
-
 %----------------------------------------
 %---------- Functions
 %----------------------------------------
 
 Create GmatFunction AnalyticHohmannTransfer;
-GMAT AnalyticHohmannTransfer.FunctionPath = 'C:\Users\Anabel\OneDrive - Universidad Politécnica de Madrid\Escritorio\UPM\EEA\GMAT_Trabajo\AnalyticHohmannTransfer.gmf';
+GMAT AnalyticHohmannTransfer.FunctionPath = 'AnalyticHohmannTransfer.gmf';
 
 Create GmatFunction AnalyticImpulse;
-GMAT AnalyticImpulse.FunctionPath = 'C:\Users\Anabel\OneDrive - Universidad Politécnica de Madrid\Escritorio\UPM\EEA\GMAT_Trabajo\AnalyticImpulse.gmf';
+GMAT AnalyticImpulse.FunctionPath = 'AnalyticImpulse.gmf';
 
 %----------------------------------------
 %---------- Arrays, Variables, Strings
@@ -894,7 +883,7 @@ GMAT INC_final = 40;
 GMAT Option_Orbit = 1;
 GMAT e_final = 0;
 GMAT Rp_final = 0;
-GMAT Option_h = 2;
+GMAT Option_h = 1;
 GMAT DVx = 0;
 GMAT DVy = 0;
 GMAT Vx_MCM = 0;
@@ -953,7 +942,6 @@ GMAT MaxStep_tb = 0;
 GMAT Vx_Incoming = 0;
 GMAT Vy_Incoming = 0;
 GMAT Vz_Incoming = 0;
-
 
 
 
@@ -1251,7 +1239,7 @@ If 'Finite Impulse' Impulsive_Option == 1
          GMAT tb_up_limit = tb1 * 5;
          GMAT tb_down_limit = 0;
          GMAT MaxStep_tb = 0.1;
-         GMAT JupiterExpress_Finite.MainTank.FuelMass = 7050;
+         GMAT JupiterExpress_Finite.MainTank.FuelMass = 8000;
          GMAT tb1 = 68.74509999999994;
          GMAT Vx_Incoming = 0.7550906472767412;
          GMAT Vy_Incoming = 0.009648878532761578;
@@ -1297,20 +1285,16 @@ If 'Finite Impulse' Impulsive_Option == 1
       If Option_h == 1
          
          If Option_Orbit == 1
-            GMAT tb2 = 6400;
             GMAT tb_up_limit = tb2 * 5;
             GMAT tb_down_limit = 0;
             GMAT MaxStep_tb = 1;
-            GMAT Vx_Incoming = -6.903253089654747;
-            GMAT Vy_Incoming = -2.936368224020135;
-            GMAT Vz_Incoming = -3.76743317449896;
          Else
             If Option_Orbit == 2
                GMAT tb2 = 14000;
                GMAT tb_up_limit = tb2 * 3;
                GMAT tb_down_limit = 0;
                GMAT MaxStep_tb = 10;
-               GMAT Vx_Incoming = 0.352522528381394;
+               GMAT Vx_Incoming = 7.352522528381394;
                GMAT Vy_Incoming = 3.020934030870873;
                GMAT Vz_Incoming = -1.824756903392026;
             Else
@@ -1354,9 +1338,9 @@ If 'Finite Impulse' Impulsive_Option == 1
    EndScript;
    UpdateDynamicData Table_tiempos;
    Target 'ReachIncomingHyperbola' DC1 {SolveMode = Solve, ExitMode = DiscardAndContinue, ShowProgressWindow = true};
-      Vary 'VaryThrusterVx' DC1(JupiterExpress_Finite.Thurster_DeepSpace.ThrustDirection1 = Vx_Incoming, {Perturbation = 0.0001, Lower = -10, Upper = 20, MaxStep = 0.1, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
-      Vary 'VaryThrusterVy' DC1(JupiterExpress_Finite.Thurster_DeepSpace.ThrustDirection2 = Vy_Incoming, {Perturbation = 0.0001, Lower = -10, Upper = 10, MaxStep = 0.1, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
-      Vary 'VaryThrusterVz' DC1(JupiterExpress_Finite.Thurster_DeepSpace.ThrustDirection3 = Vz_Incoming, {Perturbation = 0.0001, Lower = -10, Upper = 10, MaxStep = 0.5, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+      Vary 'VaryThrusterVx' DC1(JupiterExpress_Finite.Thurster_DeepSpace.ThrustDirection1 = -7.352522528381394, {Perturbation = 0.0001, Lower = -10, Upper = 20, MaxStep = 0.1, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+      Vary 'VaryThrusterVy' DC1(JupiterExpress_Finite.Thurster_DeepSpace.ThrustDirection2 = -3.020934030870873, {Perturbation = 0.0001, Lower = -10, Upper = 10, MaxStep = 0.1, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+      Vary 'VaryThrusterVz' DC1(JupiterExpress_Finite.Thurster_DeepSpace.ThrustDirection3 = -1.824756903392026, {Perturbation = 0.0001, Lower = -10, Upper = 10, MaxStep = 0.5, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
       Vary 'Varytb_DeepSpace' DC1(tb_DeepSpace = tb2, {Perturbation = 0.1, Lower = tb_down_limit, Upper = tb_up_limit, MaxStep = MaxStep_tb, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
       BeginFiniteBurn FiniteBurn_DeepSpace(JupiterExpress_Finite);
       Propagate 'Prop_tb' DeepSpaceProp(JupiterExpress_Finite) {JupiterExpress_Finite.ElapsedSecs = tb_DeepSpace, OrbitColor = [255 128 0]};
@@ -1418,7 +1402,6 @@ If 'Finite Impulse' Impulsive_Option == 1
          EndTarget;  % For targeter DC1
       EndIf;
    EndIf;
-   UpdateDynamicData Table_Mf;
 
 
 EndIf;
