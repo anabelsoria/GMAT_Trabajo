@@ -1,5 +1,5 @@
 %General Mission Analysis Tool(GMAT) Script
-%Created: 2021-01-24 23:44:04
+%Created: 2021-01-25 00:17:36
 
 
 %----------------------------------------
@@ -294,6 +294,28 @@ GMAT Thruster_NearJup.K14 = 0;
 GMAT Thruster_NearJup.K15 = 0;
 GMAT Thruster_NearJup.K16 = 0;
 
+%----------------------------------------
+%---------- GroundStations
+%----------------------------------------
+
+Create GroundStation Montegancedo;
+GMAT Montegancedo.OrbitColor = [216 191 216];
+GMAT Montegancedo.TargetColor = DarkGray;
+GMAT Montegancedo.CentralBody = Earth;
+GMAT Montegancedo.StateType = Spherical;
+GMAT Montegancedo.HorizonReference = Sphere;
+GMAT Montegancedo.Location1 = 40.40638;
+GMAT Montegancedo.Location2 = 356.168;
+GMAT Montegancedo.Location3 = 6;
+GMAT Montegancedo.Id = 'StationId';
+GMAT Montegancedo.IonosphereModel = 'None';
+GMAT Montegancedo.TroposphereModel = 'None';
+GMAT Montegancedo.DataSource = 'Constant';
+GMAT Montegancedo.Temperature = 295.1;
+GMAT Montegancedo.Pressure = 1013.5;
+GMAT Montegancedo.Humidity = 55;
+GMAT Montegancedo.MinimumElevationAngle = 7;
+
 
 
 
@@ -487,6 +509,41 @@ GMAT JupiterICRF.Origin = Jupiter;
 GMAT JupiterICRF.Axes = ICRF;
 
 %----------------------------------------
+%---------- EventLocators
+%----------------------------------------
+
+Create ContactLocator ContactosTierra;
+GMAT ContactosTierra.Target = JupiterExpress_Finite;
+GMAT ContactosTierra.Filename = 'C:\Users\Anabel\OneDrive - Universidad Politécnica de Madrid\Escritorio\UPM\EEA\GMAT_Trabajo\Results\Reports\ContactosTierra.csv';
+GMAT ContactosTierra.OccultingBodies = {Earth};
+GMAT ContactosTierra.InputEpochFormat = 'UTCGregorian';
+GMAT ContactosTierra.InitialEpoch = '27 Mar 2032 05:34:04.943';
+GMAT ContactosTierra.StepSize = 10;
+GMAT ContactosTierra.FinalEpoch = '27 Mar 2033 05:34:04.943';
+GMAT ContactosTierra.UseLightTimeDelay = true;
+GMAT ContactosTierra.UseStellarAberration = true;
+GMAT ContactosTierra.WriteReport = true;
+GMAT ContactosTierra.RunMode = Manual;
+GMAT ContactosTierra.UseEntireInterval = false;
+GMAT ContactosTierra.Observers = {Montegancedo};
+GMAT ContactosTierra.LightTimeDirection = Transmit;
+
+Create EclipseLocator EclipseLocator1;
+GMAT EclipseLocator1.Spacecraft = JupiterExpress;
+GMAT EclipseLocator1.Filename = 'EclipseLocator1.txt';
+GMAT EclipseLocator1.OccultingBodies = {Earth, Luna};
+GMAT EclipseLocator1.InputEpochFormat = 'TAIModJulian';
+GMAT EclipseLocator1.InitialEpoch = '21545';
+GMAT EclipseLocator1.StepSize = 10;
+GMAT EclipseLocator1.FinalEpoch = '21545.138';
+GMAT EclipseLocator1.UseLightTimeDelay = true;
+GMAT EclipseLocator1.UseStellarAberration = true;
+GMAT EclipseLocator1.WriteReport = true;
+GMAT EclipseLocator1.RunMode = Automatic;
+GMAT EclipseLocator1.UseEntireInterval = true;
+GMAT EclipseLocator1.EclipseTypes = {'Umbra', 'Penumbra', 'Antumbra'};
+
+%----------------------------------------
 %---------- Solvers
 %----------------------------------------
 
@@ -504,9 +561,9 @@ GMAT DC1.Algorithm = NewtonRaphson;
 
 Create OrbitView SolarSystemView;
 GMAT SolarSystemView.SolverIterations = Current;
-GMAT SolarSystemView.UpperLeft = [ 0 0.4181577203445991 ];
-GMAT SolarSystemView.Size = [ 0.3330408073716543 0.4976805831676607 ];
-GMAT SolarSystemView.RelativeZOrder = 3631;
+GMAT SolarSystemView.UpperLeft = [ 0 0.4161696487740225 ];
+GMAT SolarSystemView.Size = [ 0.3331881533101045 0.4976805831676607 ];
+GMAT SolarSystemView.RelativeZOrder = 4119;
 GMAT SolarSystemView.Maximized = false;
 GMAT SolarSystemView.Add = {JupiterExpress, JupiterExpress_OH, JupiterExpress_Finite, Sun, Earth, Jupiter};
 GMAT SolarSystemView.CoordinateSystem = SunICRF;
@@ -536,9 +593,9 @@ GMAT SolarSystemView.EnableConstellations = On;
 
 Create OrbitView JupiterView;
 GMAT JupiterView.SolverIterations = Current;
-GMAT JupiterView.UpperLeft = [ 0.620447564721369 0 ];
-GMAT JupiterView.Size = [ 0.3326020184291356 0.3313452617627568 ];
-GMAT JupiterView.RelativeZOrder = 3619;
+GMAT JupiterView.UpperLeft = [ 0.6189024390243902 0 ];
+GMAT JupiterView.Size = [ 0.3327526132404181 0.3313452617627568 ];
+GMAT JupiterView.RelativeZOrder = 4127;
 GMAT JupiterView.Maximized = false;
 GMAT JupiterView.Add = {JupiterExpress, JupiterExpress_OH, JupiterExpress_Finite, Jupiter};
 GMAT JupiterView.CoordinateSystem = JupiterICRF;
@@ -567,9 +624,9 @@ GMAT JupiterView.EnableStars = On;
 GMAT JupiterView.EnableConstellations = On;
 
 Create DynamicDataDisplay Results;
-GMAT Results.UpperLeft = [ 0.002193944712593243 0.1709741550695825 ];
-GMAT Results.Size = [ 0.6147433084686266 1.153081510934394 ];
-GMAT Results.RelativeZOrder = 3458;
+GMAT Results.UpperLeft = [ 0.001742160278745645 0.1996879875195008 ];
+GMAT Results.Size = [ 0.6328397212543554 1.357254290171607 ];
+GMAT Results.RelativeZOrder = 3982;
 GMAT Results.Maximized = false;
 GMAT Results.AddParameters = {1, VinfX};
 GMAT Results.AddParameters = {2, VinfY};
@@ -604,9 +661,9 @@ GMAT Results.CritColor = [255 0 0];
 
 Create OrbitView EarthView;
 GMAT EarthView.SolverIterations = Current;
-GMAT EarthView.UpperLeft = [ 0.2882843352347521 0 ];
-GMAT EarthView.Size = [ 0.3339183852566915 0.4976805831676607 ];
-GMAT EarthView.RelativeZOrder = 3623;
+GMAT EarthView.UpperLeft = [ 0.2870209059233449 0 ];
+GMAT EarthView.Size = [ 0.3340592334494774 0.4976805831676607 ];
+GMAT EarthView.RelativeZOrder = 4123;
 GMAT EarthView.Maximized = false;
 GMAT EarthView.Add = {JupiterExpress, JupiterExpress_OH, JupiterExpress_Finite, Earth};
 GMAT EarthView.CoordinateSystem = EarthMJ2000Eq;
@@ -635,9 +692,9 @@ GMAT EarthView.EnableStars = On;
 GMAT EarthView.EnableConstellations = Off;
 
 Create DynamicDataDisplay Results_in;
-GMAT Results_in.UpperLeft = [ 0.4585344449319877 0.390987408880053 ];
-GMAT Results_in.Size = [ 0.484422992540588 0.9721669980119284 ];
-GMAT Results_in.RelativeZOrder = 3585;
+GMAT Results_in.UpperLeft = [ 0.4577526132404181 0.4586583463338533 ];
+GMAT Results_in.Size = [ 0.5026132404181185 1.229329173166927 ];
+GMAT Results_in.RelativeZOrder = 3972;
 GMAT Results_in.Maximized = false;
 GMAT Results_in.AddParameters = {1, JupiterExpress_OH.JupiterICRF.INC};
 GMAT Results_in.AddParameters = {2, JupiterExpress_OH.Jupiter.RadPer};
@@ -795,9 +852,9 @@ GMAT Report_DV_01.ColumnWidth = 23;
 GMAT Report_DV_01.WriteReport = true;
 
 Create DynamicDataDisplay Table_DV_Mp;
-GMAT Table_DV_Mp.UpperLeft = [ 0.03992979376919702 0.05102717031146455 ];
-GMAT Table_DV_Mp.Size = [ 0.5300570425625274 1.153081510934394 ];
-GMAT Table_DV_Mp.RelativeZOrder = 3478;
+GMAT Table_DV_Mp.UpperLeft = [ 0.039198606271777 0.05850234009360374 ];
+GMAT Table_DV_Mp.Size = [ 0.5483449477351916 1.357254290171607 ];
+GMAT Table_DV_Mp.RelativeZOrder = 3977;
 GMAT Table_DV_Mp.Maximized = false;
 GMAT Table_DV_Mp.AddParameters = {1, DV_salida};
 GMAT Table_DV_Mp.AddParameters = {2, DV_MCM};
@@ -827,9 +884,9 @@ GMAT Table_DV_Mp.WarnColor = [218 165 32];
 GMAT Table_DV_Mp.CritColor = [255 0 0];
 
 Create DynamicDataDisplay Table_tiempos;
-GMAT Table_tiempos.UpperLeft = [ 0.6349275998244844 0.3300198807157058 ];
-GMAT Table_tiempos.Size = [ 0.2426502852128126 0.4950298210735586 ];
-GMAT Table_tiempos.RelativeZOrder = 3453;
+GMAT Table_tiempos.UpperLeft = [ 0.6341463414634146 0.3868954758190328 ];
+GMAT Table_tiempos.Size = [ 0.2608885017421603 0.6684867394695788 ];
+GMAT Table_tiempos.RelativeZOrder = 4004;
 GMAT Table_tiempos.Maximized = false;
 GMAT Table_tiempos.AddParameters = {1, MaxStep_tb};
 GMAT Table_tiempos.AddParameters = {2, tb_up_limit};
@@ -841,9 +898,9 @@ GMAT Table_tiempos.WarnColor = [218 165 32];
 GMAT Table_tiempos.CritColor = [255 0 0];
 
 Create DynamicDataDisplay Table_Mf;
-GMAT Table_Mf.UpperLeft = [ 0.5638437911364633 0.6540755467196819 ];
-GMAT Table_Mf.Size = [ 0.2308029837648091 0.2770046388336647 ];
-GMAT Table_Mf.RelativeZOrder = 3572;
+GMAT Table_Mf.UpperLeft = [ 0.5631533101045296 0.7683307332293292 ];
+GMAT Table_Mf.Size = [ 0.2491289198606272 0.4118564742589704 ];
+GMAT Table_Mf.RelativeZOrder = 3992;
 GMAT Table_Mf.Maximized = false;
 GMAT Table_Mf.AddParameters = {1, JupiterExpress_Finite.MainTank.FuelMass};
 GMAT Table_Mf.RowTextColors = {1, [0 0 0]};
@@ -852,9 +909,9 @@ GMAT Table_Mf.CritColor = [255 0 0];
 
 Create ReportFile EvolucionAltura;
 GMAT EvolucionAltura.SolverIterations = Current;
-GMAT EvolucionAltura.UpperLeft = [ 0.1803422553751645 0.1186216037110669 ];
-GMAT EvolucionAltura.Size = [ 0.5985081175954365 0.7978793903247183 ];
-GMAT EvolucionAltura.RelativeZOrder = 3673;
+GMAT EvolucionAltura.UpperLeft = [ 0.1798780487804878 0.1177847113884555 ];
+GMAT EvolucionAltura.Size = [ 0.5979965156794426 0.797191887675507 ];
+GMAT EvolucionAltura.RelativeZOrder = 4174;
 GMAT EvolucionAltura.Maximized = false;
 GMAT EvolucionAltura.Filename = 'EvolucionAltura.dat';
 GMAT EvolucionAltura.Precision = 16;
@@ -866,6 +923,23 @@ GMAT EvolucionAltura.FixedWidth = true;
 GMAT EvolucionAltura.Delimiter = ' ';
 GMAT EvolucionAltura.ColumnWidth = 23;
 GMAT EvolucionAltura.WriteReport = true;
+
+Create ReportFile TiempoLLegadaJupiter;
+GMAT TiempoLLegadaJupiter.SolverIterations = Current;
+GMAT TiempoLLegadaJupiter.UpperLeft = [ 0.1946864111498258 0.02574102964118565 ];
+GMAT TiempoLLegadaJupiter.Size = [ 0.5993031358885017 0.7979719188767551 ];
+GMAT TiempoLLegadaJupiter.RelativeZOrder = 4184;
+GMAT TiempoLLegadaJupiter.Maximized = false;
+GMAT TiempoLLegadaJupiter.Filename = 'TiempoLLegadaJupiter.txt';
+GMAT TiempoLLegadaJupiter.Precision = 16;
+GMAT TiempoLLegadaJupiter.Add = {JupiterExpress_Finite.UTCGregorian};
+GMAT TiempoLLegadaJupiter.WriteHeaders = true;
+GMAT TiempoLLegadaJupiter.LeftJustify = On;
+GMAT TiempoLLegadaJupiter.ZeroFill = Off;
+GMAT TiempoLLegadaJupiter.FixedWidth = true;
+GMAT TiempoLLegadaJupiter.Delimiter = ' ';
+GMAT TiempoLLegadaJupiter.ColumnWidth = 23;
+GMAT TiempoLLegadaJupiter.WriteReport = true;
 
 %----------------------------------------
 %---------- Functions
@@ -1418,7 +1492,7 @@ If 'Finite Impulse' Impulsive_Option == 1
             BeginFiniteBurn FiniteBurn_NearJup(JupiterExpress_Finite);
             Propagate 'Proptb_NearJupiter' NearJupiter(JupiterExpress_Finite) {JupiterExpress_Finite.ElapsedSecs = tb_NearJup};
             EndFiniteBurn FiniteBurn_NearJup(JupiterExpress_Finite);
-            Propagate 'PropToPer' NearJupiter(JupiterExpress_Finite) {JupiterExpress_Finite.ElapsedDays = 2};
+            Propagate 'PropToPer' NearJupiter(JupiterExpress_Finite) {JupiterExpress_Finite.Jupiter.Periapsis};
             Achieve 'AchieveECC_final' DC1(JupiterExpress_Finite.Jupiter.ECC = e_final, {Tolerance = 0.01});
             Achieve 'AchieveRp_final' DC1(JupiterExpress_Finite.Jupiter.RadPer = Rp_final, {Tolerance = 10});
             Achieve 'AchieveINC_final' DC1(JupiterExpress_Finite.JupiterICRF.INC = INC_final, {Tolerance = 0.1});
@@ -1438,11 +1512,13 @@ If 'Finite Impulse' Impulsive_Option == 1
             Achieve 'AchieveINC_final' DC1(JupiterExpress_Finite.JupiterICRF.INC = INC_final, {Tolerance = 0.1});
          EndTarget;  % For targeter DC1
       EndIf;
-      Report EvolucionAltura JupiterExpress_Finite.Jupiter.RMAG;
-      Propagate NearJupiter(JupiterExpress_Finite) {JupiterExpress_Finite.ElapsedDays = 2};
-      Report EvolucionAltura JupiterExpress_Finite.Jupiter.RMAG;
+      Report 'ReportTiempoLLegadaJupiter' TiempoLLegadaJupiter JupiterExpress_Finite.UTCGregorian;
+      Report 'Report_RMAG' EvolucionAltura JupiterExpress_Finite.Jupiter.RMAG;
+      Propagate 'Prop2Days' NearJupiter(JupiterExpress_Finite) {JupiterExpress_Finite.ElapsedDays = 400};
+      Report 'Report_RMAG2' EvolucionAltura JupiterExpress_Finite.Jupiter.RMAG;
    EndIf;
    UpdateDynamicData Table_Mf;
+   FindEvents ContactosTierra {Append = false};
 
 
 EndIf;
