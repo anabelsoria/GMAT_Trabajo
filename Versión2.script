@@ -348,6 +348,7 @@ GMAT Thruster_NearJup.K16 = 0;
 
 
 
+
 %----------------------------------------
 %---------- ForceModels
 %----------------------------------------
@@ -789,10 +790,10 @@ GMAT Report_DV_01.WriteReport = true;
 %----------------------------------------
 
 Create GmatFunction AnalyticHohmannTransfer;
-GMAT AnalyticHohmannTransfer.FunctionPath = 'AnalyticHohmannTransfer.gmf';
+GMAT AnalyticHohmannTransfer.FunctionPath = 'C:\Users\Anabel\OneDrive - Universidad Politécnica de Madrid\Escritorio\UPM\EEA\GMAT_Trabajo\AnalyticHohmannTransfer.gmf';
 
 Create GmatFunction AnalyticImpulse;
-GMAT AnalyticImpulse.FunctionPath = 'AnalyticImpulse.gmf';
+GMAT AnalyticImpulse.FunctionPath = 'C:\Users\Anabel\OneDrive - Universidad Politécnica de Madrid\Escritorio\UPM\EEA\GMAT_Trabajo\AnalyticImpulse.gmf';
 
 %----------------------------------------
 %---------- Arrays, Variables, Strings
@@ -855,6 +856,7 @@ GMAT AOP_NearEarth = 0;
 GMAT Lat_HM = 0;
 GMAT tb_DeepSpace = 0;
 GMAT tb_NearJup = 0;
+
 
 
 
@@ -1114,7 +1116,7 @@ If 'Finite Impulse' Impulsive_Option == 1
       Propagate 'Proptb_NearJupiter' NearJupiter(JupiterExpress_Finite) {JupiterExpress_Finite.ElapsedSecs = tb_NearJup};
       EndFiniteBurn FiniteBurn_NearJup(JupiterExpress_Finite);
       Propagate 'PropToPer' NearJupiter(JupiterExpress_Finite) {JupiterExpress_Finite.ElapsedSecs = 12000.0};
-      Achieve 'AchieveECC_final' DC1(JupiterExpress_Finite.Mars.ECC = e_final, {Tolerance = 0.1});
+      Achieve 'AchieveECC_final' DC1(JupiterExpress_Finite.Jupiter.ECC = e_final, {Tolerance = 0.1});
       Achieve 'AchieveRp_final' DC1(JupiterExpress_Finite.Jupiter.RadPer = Rp_final, {Tolerance = 10});
       Achieve 'AchieveINC_final' DC1(JupiterExpress_Finite.JupiterICRF.INC = INC_final, {Tolerance = 0.1});
    EndTarget;  % For targeter DC1
