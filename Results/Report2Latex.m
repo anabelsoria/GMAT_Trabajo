@@ -202,22 +202,42 @@ switch n
         
         rJ = 71492;
         
-        altura = load(['Reports/Report_Evoluvion_Altura.dat']) - rJ;
+        altura = load(['Reports/Evolucion_Altura/Evolucion_Altura_h-600_e-06.dat']) - rJ;
         tiempo = linspace(0,2*24,length(altura));
         
         [max_, max_idx] = max(altura);
-        [min_, min_idx] = min(altura)
+        [min_, min_idx] = min(altura);
 
         h = figure();
             hold on
             plot(tiempo,altura','LineWidth',1.5,'DisplayName','Altura')
-            plot([0,tiempo(max_idx)], [max_,max_],'k','LineWidth',3,'DisplayName',['Apogeo = ' num2str(round(max_))])
-            plot([tiempo(min_idx),tiempo(end)], [min_,min_],'r','LineWidth',3,'DisplayName',['Perigeo = ' num2str(round(min_))])
+            plot([0,50], [max_,max_],'k','LineWidth',1,'DisplayName',['Apogeo = ' num2str(round(max_))])
+            plot([0,50], [min_,min_],'r','LineWidth',1,'DisplayName',['Perigeo = ' num2str(round(min_))])
             box on; grid on;
             legend('Interpreter','latex')
             xlabel('\textit{tiempo} [horas]','Interpreter','latex')
             ylabel('\textit{Altura} [km]','Interpreter','latex')
-            title('\textit{\textbf{Evolucion altura en Jupiter}}',...
+            title('\textit{\textbf{Evolucion altura: h = 600, e = 0.6}}',...
+                  'Interpreter','latex', 'FontSize', 14)          
+            Save_as_PDF(h, 'Figuras\Evolucion_Altura_R-600_e-06')
+            
+            
+        altura = load(['Reports/Evolucion_Altura/Evolucion_Altura_h-1500_e-06.dat']) - rJ;
+        tiempo = linspace(0,2*24,length(altura));
+        
+        [max_, max_idx] = max(altura);
+        [min_, min_idx] = min(altura);
+
+        h = figure();
+            hold on
+            plot(tiempo,altura','LineWidth',1.5,'DisplayName','Altura')
+            plot([0,50], [max_,max_],'k','LineWidth',1,'DisplayName',['Apogeo = ' num2str(round(max_))])
+            plot([0,50], [min_,min_],'r','LineWidth',1,'DisplayName',['Perigeo = ' num2str(round(min_))])
+            box on; grid on;
+            legend('Interpreter','latex')
+            xlabel('\textit{tiempo} [horas]','Interpreter','latex')
+            ylabel('\textit{Altura} [km]','Interpreter','latex')
+            title('\textit{\textbf{Evolucion altura: h = 1500, e = 0.6}}',...
                   'Interpreter','latex', 'FontSize', 14)          
             Save_as_PDF(h, 'Figuras\Evolucion_Altura_R-1500_e-06')
 
