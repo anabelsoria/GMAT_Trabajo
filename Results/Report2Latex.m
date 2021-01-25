@@ -243,54 +243,82 @@ switch n
 
             
     case 8
-        disp('Accesos')
+        disp('Contactos')
         
-        % Aparcamiento
-        accesos = readtable('Reports/ContactosTierra.csv', 'HeaderLines',1);
+        % h = 600, e = 0.6
+        accesos = readtable('Reports/Contactos/Contactos_h-600_e06.csv', 'HeaderLines',1);
         accesos = accesos(2:end-2,end);
         resumen = summary(accesos);
-        
         datos = table2array(accesos);
+        
         h = figure();
-            plot(datos,'LineWidth',1.5,'DisplayName','h = 1500, e = 0.6')
+            hold on
+            plot(datos,'LineWidth',1.25,'DisplayName','h = 600, e = 0.6')
+                    
+        % Table
+        T = table(600, 0.6, resumen.Var9.Min, resumen.Var9.Median, resumen.Var9.Max);
+        
+        
+        % h = 1500, e = 0.6
+        accesos = readtable('Reports/Contactos/Contactos_h-1500_e06.csv', 'HeaderLines',1);
+        accesos = accesos(2:end-2,end);
+        resumen = summary(accesos);
+        datos = table2array(accesos);
+
+        % figure
+            plot(datos,'LineWidth',1.25,'DisplayName','h = 1500, e = 0.6')
+            box on; grid on;
             xlabel('\textit{tiempo} [dias]','Interpreter','latex')
             ylabel('\textit{tiempo de acceso} [s]','Interpreter','latex')
             title('\textit{\textbf{Tiempo de acceso diario durante un a\~ no}}',...
                   'Interpreter','latex', 'FontSize', 14)          
             legend('Interpreter','latex')
-            Save_as_PDF(h, 'Figuras/Accesos')
+            Save_as_PDF(h, 'Figuras/Contactos')
             
-        % Export table
-        varNames = {'$h_p$ [km]', '$e$', '$Minimo$ [s]', '$Maximo$ [s]', '$Media$ [s]'};
-        T = table(1500, 0.6, resumen.Var9.Min, resumen.Var9.Median, resumen.Var9.Max);
+        % Table
+        T(end+1,:) = table(1500, 0.6, resumen.Var9.Min, resumen.Var9.Median, resumen.Var9.Max); 
+        
+%{
+        % h = 600, e = 0.1
+        accesos = readtable('Reports/Contactos/Contactos_h-600_e01.csv', 'HeaderLines',1);
+        accesos = accesos(2:end-2,end);
+        resumen = summary(accesos);
+        datos = table2array(accesos);
 
+        % figure
+            plot(datos,'LineWidth',1.25,'DisplayName','h = 600, e = 0.1')
+            
+        % Table
+        T(end+1,:) = table(1500, 0.6, resumen.Var9.Min, resumen.Var9.Median, resumen.Var9.Max); 
+        
+       
+        % h = 1500, e = 0.1
+        accesos = readtable('Reports/Contactos/Contactos_h-1500_e01.csv', 'HeaderLines',1);
+        accesos = accesos(2:end-2,end);
+        resumen = summary(accesos);
+        datos = table2array(accesos);
+
+        % figure
+            plot(datos,'LineWidth',1.25,'DisplayName','h = 1500, e = 0.1')
+            box on; grid on;
+            xlabel('\textit{tiempo} [dias]','Interpreter','latex')
+            ylabel('\textit{tiempo de acceso} [s]','Interpreter','latex')
+            title('\textit{\textbf{Tiempo de acceso diario durante un a\~ no}}',...
+                  'Interpreter','latex', 'FontSize', 14)          
+            legend('Interpreter','latex')
+            Save_as_PDF(h, 'Figuras/Contactos')
+           
+        % Table
+        T(end+1,:) = table(1500, 0.6, resumen.Var9.Min, resumen.Var9.Median, resumen.Var9.Max); 
+        
+%}        
+        % Change variable names
+        varNames = {'$h_p$ [km]', '$e$', '$Minimo$ [s]', '$Maximo$ [s]', '$Media$ [s]'};
         T.Properties.VariableNames = varNames;
 
-        table2latex(T, 'Tablas\Accesos',...
-            'Accesos',...
-            'accesos')
-        
-        
-        %{
-        h = histogram(datos,20); % Histogram
-        N = max(h.Values); % Maximum bin count
-        mu3 = mean(datos); % Data mean
-        sigma3 = std(datos); % Data standard deviation
-
-        h = figure();
-            plot([mu3 mu3],[0 N],'r','LineWidth',2) % Mean
-            X = repmat(mu3+(1:2)*sigma3,2,1);
-            Y = repmat([0;N],1,2);
-            plot(X,Y,'Color',[255 153 51]./255,'LineWidth',2) % Standard deviations
-            legend('Data','Mean','Stds')
-            hold off
-                    outliers = (datos - mu3) > 2*sigma3;
-        datosm = datos; % Copy c3 to c3m
-        %datosm(outliers) = NaN; % Add NaN values
-        %}
-            
-
-        
+        table2latex(T, 'Tablas\Contactos',...
+            'Contactos',...
+            'contactos')
 
             
     otherwise
