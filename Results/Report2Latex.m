@@ -119,7 +119,7 @@ switch n
             
             scatter3(0, 0, 0, 150, [255, 224, 102]/255,'filled','DisplayName','Sol') 
             
-            scatter3(xE(1,1),xE(1,2),xE(1,3), 40, [0,153,51]/255,'filled','DisplayName','Salida SOI Tierra') 
+            scatter3(xE(1,1),xE(1,2),xE(1,3), 40, [0,153,51]/255,'filled','DisplayName','Tierra') 
             scatter3(xEsoi(1,1),xEsoi(1,2),xEsoi(1,3),1e2,'+','LineWidth',2, ...
             'MarkerEdgeColor',[0,153,51]/255,'DisplayName','Salida SOI Tierra') 
         
@@ -195,6 +195,82 @@ switch n
             title('\textbf{\textit{Fly By: hp = 1500} [km]}',...
                   'Interpreter','latex', 'FontSize', 14)          
             Save_as_PDF(h, 'Figuras/FlyBy_hp-1500')
+
+
+    case 7
+        disp('Evolucion altura')
+        
+        rJ = 71492;
+        
+        altura = load(['Reports/Report_Evoluvion_Altura.dat']) - rJ;
+        tiempo = linspace(0,2*24,length(altura));
+        
+        [max_, max_idx] = max(altura);
+        [min_, min_idx] = min(altura)
+
+        h = figure();
+            hold on
+            plot(tiempo,altura','LineWidth',1.5,'DisplayName','Altura')
+            plot([0,tiempo(max_idx)], [max_,max_],'k','LineWidth',3,'DisplayName',['Apogeo = ' num2str(round(max_))])
+            plot([tiempo(min_idx),tiempo(end)], [min_,min_],'r','LineWidth',3,'DisplayName',['Perigeo = ' num2str(round(min_))])
+            box on; grid on;
+            legend('Interpreter','latex')
+            xlabel('\textit{tiempo} [horas]','Interpreter','latex')
+            ylabel('\textit{Altura} [km]','Interpreter','latex')
+            title('\textit{\textbf{Evolucion altura en Jupiter}}',...
+                  'Interpreter','latex', 'FontSize', 14)          
+            Save_as_PDF(h, 'Figuras\Evolucion_Altura_R-1500_e-06')
+
+            
+    case 8
+        disp('Accesos')
+        
+        % Aparcamiento
+        accesos = readtable('Reports/ContactosTierra.csv', 'HeaderLines',1);
+        accesos = accesos(2:end-2,end);
+        resumen = summary(accesos);
+        
+        datos = table2array(accesos);
+        h = figure();
+            plot(datos,'LineWidth',1.5,'DisplayName','h = 1500, e = 0.6')
+            xlabel('\textit{tiempo} [dias]','Interpreter','latex')
+            ylabel('\textit{tiempo de acceso} [s]','Interpreter','latex')
+            title('\textit{\textbf{Tiempo de acceso diario durante un a\~ no}}',...
+                  'Interpreter','latex', 'FontSize', 14)          
+            legend('Interpreter','latex')
+            Save_as_PDF(h, 'Figuras/Accesos')
+            
+        % Export table
+        varNames = {'$h_p$ [km]', '$e$', '$Minimo$ [s]', '$Maximo$ [s]', '$Media$ [s]'};
+        T = table(1500, 0.6, resumen.Var9.Min, resumen.Var9.Median, resumen.Var9.Max);
+
+        T.Properties.VariableNames = varNames;
+
+        table2latex(T, 'Tablas\Accesos',...
+            'Accesos',...
+            'accesos')
+        
+        
+        %{
+        h = histogram(datos,20); % Histogram
+        N = max(h.Values); % Maximum bin count
+        mu3 = mean(datos); % Data mean
+        sigma3 = std(datos); % Data standard deviation
+
+        h = figure();
+            plot([mu3 mu3],[0 N],'r','LineWidth',2) % Mean
+            X = repmat(mu3+(1:2)*sigma3,2,1);
+            Y = repmat([0;N],1,2);
+            plot(X,Y,'Color',[255 153 51]./255,'LineWidth',2) % Standard deviations
+            legend('Data','Mean','Stds')
+            hold off
+                    outliers = (datos - mu3) > 2*sigma3;
+        datosm = datos; % Copy c3 to c3m
+        %datosm(outliers) = NaN; % Add NaN values
+        %}
+            
+
+        
 
             
     otherwise

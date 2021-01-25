@@ -1,5 +1,5 @@
 %General Mission Analysis Tool(GMAT) Script
-%Created: 2021-01-20 22:14:50
+%Created: 2021-01-23 12:48:09
 
 
 %----------------------------------------
@@ -55,11 +55,11 @@ GMAT JupiterExpress_OH.DateFormat = UTCGregorian;
 GMAT JupiterExpress_OH.Epoch = '19 Jan 2030 11:59:28.000';
 GMAT JupiterExpress_OH.CoordinateSystem = EarthMJ2000Eq;
 GMAT JupiterExpress_OH.DisplayStateType = OutgoingAsymptote;
-GMAT JupiterExpress_OH.OutgoingRadPer = 7015.378524789872;
-GMAT JupiterExpress_OH.OutgoingC3Energy = -55.42322475310031;
-GMAT JupiterExpress_OH.OutgoingRHA = 81.5318602983707;
-GMAT JupiterExpress_OH.OutgoingDHA = 9.175961877476691;
-GMAT JupiterExpress_OH.OutgoingBVAZI = 80.96526202436802;
+GMAT JupiterExpress_OH.OutgoingRadPer = 7015.378524789873;
+GMAT JupiterExpress_OH.OutgoingC3Energy = -55.42322475310032;
+GMAT JupiterExpress_OH.OutgoingRHA = 81.53186029837065;
+GMAT JupiterExpress_OH.OutgoingDHA = 9.175961877476738;
+GMAT JupiterExpress_OH.OutgoingBVAZI = 80.96526202436797;
 GMAT JupiterExpress_OH.TA = 0;
 GMAT JupiterExpress_OH.DryMass = 850;
 GMAT JupiterExpress_OH.Cd = 2.2;
@@ -93,6 +93,9 @@ GMAT JupiterExpress_OH.AttitudeDisplayStateType = 'Quaternion';
 GMAT JupiterExpress_OH.AttitudeRateDisplayStateType = 'AngularVelocity';
 GMAT JupiterExpress_OH.AttitudeCoordinateSystem = EarthMJ2000Eq;
 GMAT JupiterExpress_OH.EulerAngleSequence = '321';
+
+
+
 
 
 
@@ -271,9 +274,9 @@ GMAT DC1.Algorithm = NewtonRaphson;
 
 Create OrbitView SolarSystemView;
 GMAT SolarSystemView.SolverIterations = Current;
-GMAT SolarSystemView.UpperLeft = [ 0.06070496083550914 0.1090909090909091 ];
-GMAT SolarSystemView.Size = [ 0.5913838120104439 0.7784090909090909 ];
-GMAT SolarSystemView.RelativeZOrder = 122;
+GMAT SolarSystemView.UpperLeft = [ 0.06 0.1068181818181818 ];
+GMAT SolarSystemView.Size = [ 0.5911764705882353 0.7784090909090909 ];
+GMAT SolarSystemView.RelativeZOrder = 46;
 GMAT SolarSystemView.Maximized = false;
 GMAT SolarSystemView.Add = {JupiterExpress, JupiterExpress_OH, Sun, Earth, Jupiter};
 GMAT SolarSystemView.CoordinateSystem = SunICRF;
@@ -303,9 +306,9 @@ GMAT SolarSystemView.EnableConstellations = Off;
 
 Create OrbitView JupiterView;
 GMAT JupiterView.SolverIterations = Current;
-GMAT JupiterView.UpperLeft = [ 0.25 0.01363636363636364 ];
-GMAT JupiterView.Size = [ 0.6801566579634465 0.8636363636363636 ];
-GMAT JupiterView.RelativeZOrder = 118;
+GMAT JupiterView.UpperLeft = [ 0.2488235294117647 0.01136363636363636 ];
+GMAT JupiterView.Size = [ 0.68 0.8636363636363636 ];
+GMAT JupiterView.RelativeZOrder = 58;
 GMAT JupiterView.Maximized = false;
 GMAT JupiterView.Add = {JupiterExpress, JupiterExpress_OH, Jupiter};
 GMAT JupiterView.CoordinateSystem = JupiterICRF;
@@ -334,9 +337,9 @@ GMAT JupiterView.EnableStars = On;
 GMAT JupiterView.EnableConstellations = Off;
 
 Create DynamicDataDisplay Results;
-GMAT Results.UpperLeft = [ 0.1409921671018277 0.5568181818181818 ];
-GMAT Results.Size = [ 0.5913838120104439 1.227272727272727 ];
-GMAT Results.RelativeZOrder = 150;
+GMAT Results.UpperLeft = [ 0.14 0.5545454545454546 ];
+GMAT Results.Size = [ 0.6088235294117647 1.227272727272727 ];
+GMAT Results.RelativeZOrder = 50;
 GMAT Results.Maximized = false;
 GMAT Results.AddParameters = {1, VinfX};
 GMAT Results.AddParameters = {2, VinfY};
@@ -388,9 +391,9 @@ GMAT EarthView.EnableStars = On;
 GMAT EarthView.EnableConstellations = Off;
 
 Create DynamicDataDisplay Results_in;
-GMAT Results_in.UpperLeft = [ 0.1240208877284595 0.6284090909090909 ];
-GMAT Results_in.Size = [ 0.5489556135770235 1.227272727272727 ];
-GMAT Results_in.RelativeZOrder = 148;
+GMAT Results_in.UpperLeft = [ 0.1229411764705882 0.6261363636363636 ];
+GMAT Results_in.Size = [ 0.5664705882352942 1.227272727272727 ];
+GMAT Results_in.RelativeZOrder = 54;
 GMAT Results_in.Maximized = false;
 GMAT Results_in.AddParameters = {1, JupiterExpress_OH.JupiterICRF.INC};
 GMAT Results_in.AddParameters = {2, JupiterExpress_OH.Jupiter.RadPer};
@@ -635,9 +638,12 @@ GMAT BT = 0;
 GMAT Option_Orbit = 1;
 GMAT e_final = 0;
 GMAT Rp_final = 0;
-GMAT Option_h = 1;
+GMAT Option_h = 2;
 GMAT DVx = 0;
 GMAT DVy = 0;
+
+
+
 
 
 
@@ -738,8 +744,9 @@ BeginScript 'DefineJupiterExpress_2'
    GMAT JupiterExpress_OH.Earth.OutgoingRadPer = Rp;
    GMAT JupiterExpress_OH.EarthMJ2000Eq.OutgoingBVAZI = BVAZI;
 EndScript;
-Report 'Report_Out_Orbit' Report_Out_Orbit alpha BVAZI C3 delta Rp;
+Report 'Report_Out_Orbit' Report_Out_Orbit alpha BVAZI C3 delta Rp JupiterExpress_OH.EarthMJ2000Eq.VX JupiterExpress_OH.EarthMJ2000Eq.VY JupiterExpress_OH.EarthMJ2000Eq.VZ;
 UpdateDynamicData Results;
+Stop;
 Propagate 'PropToEarthSOI' NearEarth(JupiterExpress_OH) {JupiterExpress_OH.Earth.RMAG = 1e6, OrbitColor = [255 128 0]};
 Report 'Report_X_SOI_Earth' Report_X_SOI_Earth JupiterExpress_OH.SunICRF.X JupiterExpress_OH.SunICRF.Y JupiterExpress_OH.SunICRF.Z JupiterExpress_OH.ElapsedDays;
 GMAT 'TOF_MCM' TOF_MCM = TOF/2;
@@ -780,8 +787,9 @@ Report 'Report_MCI' Report_MCI MCI.Element1 MCI.Element2 MCI.Element3 Rp_final;
 Report 'Report_XV_Reach_Final_Orbit' Report_XV_Reach_Final_Orbit JupiterExpress_OH.JupiterICRF.X JupiterExpress_OH.JupiterICRF.Y JupiterExpress_OH.JupiterICRF.Z JupiterExpress_OH.JupiterICRF.VX JupiterExpress_OH.JupiterICRF.VY JupiterExpress_OH.JupiterICRF.VZ;
 Report 'Report_V_Hiper_Perig' Report_V_Hiper_Perig JupiterExpress_OH.JupiterICRF.VX JupiterExpress_OH.JupiterICRF.VY JupiterExpress_OH.JupiterICRF.VZ JupiterExpress_OH.SunICRF.X JupiterExpress_OH.JupiterICRF.X;
 UpdateDynamicData Results_in;
+Stop;
 If 'Fly_by' Option_Orbit == 1.0
-   Propagate 'Prop_Fly_by' NearJupiter(JupiterExpress_OH) {JupiterExpress_OH.Jupiter.RMAG = 48.2e6, OrbitColor = [128 0 128]};
+   Propagate 'Prop_Fly_by' NearJupiter(JupiterExpress_OH) {JupiterExpress_OH.ElapsedDays = 1, OrbitColor = [128 0 128]};
 Else 'Else Elliptic'
    GMAT 'AnalyticCalculation2' [DVx, DVy] = AnalyticImpulse(e_final, Rp_final, JupiterExpress_OH.JupiterICRF.VX, JupiterExpress_OH.JupiterICRF.VY, JupiterExpress_OH.JupiterICRF.VZ, JupiterExpress_OH.Jupiter.ECC);
    Target 'Eliptic_Orbit' DC1 {SolveMode = Solve, ExitMode = DiscardAndContinue, ShowProgressWindow = true};
