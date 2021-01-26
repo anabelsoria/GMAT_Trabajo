@@ -283,6 +283,47 @@ switch n
                   'Interpreter','latex', 'FontSize', 14)          
             Save_as_PDF(h, 'Figuras\Evolucion_Altura_R-1500_e-01')
             
+            
+        % h = 600, e = 0.1    
+        altura = load(['Reports/Evolucion_Altura/Evolucion_Altura_h-600_fb.dat']) - rJ;
+        tiempo = linspace(0,2*24,length(altura));
+        
+        %[max_, max_idx] = max(altura);
+        [min_, min_idx] = min(altura);
+
+        h = figure();
+            hold on
+            plot(tiempo,altura','LineWidth',1.5,'DisplayName','Altura')
+            %plot([0,50], [max_,max_],'k','LineWidth',1,'DisplayName',['Apogeo = ' num2str(round(max_))])
+            plot([0,50], [min_,min_],'r','LineWidth',1,'DisplayName',['Perigeo = ' num2str(round(min_))])
+            box on; grid on
+            legend('Interpreter','latex')
+            xlabel('\textit{Paso del propagador}','Interpreter','latex')
+            ylabel('\textit{Altura} [km]','Interpreter','latex')
+            title('\textit{\textbf{Evolucion altura: h = 600, Fly by}}',...
+                  'Interpreter','latex', 'FontSize', 14)          
+            Save_as_PDF(h, 'Figuras\Evolucion_Altura_R-600_fb')
+   
+        % h = 1500, e = 0.1    
+        altura = load(['Reports/Evolucion_Altura/Evolucion_Altura_h-1500_fb.dat']) - rJ;
+        tiempo = linspace(0,2*24,length(altura));
+        
+        [min_, min_idx] = min(altura);
+
+        h = figure();
+            hold on
+            plot(tiempo,altura','LineWidth',1.5,'DisplayName','Altura')
+            %plot([0,50], [max_,max_],'k','LineWidth',1,'DisplayName',['Apogeo = ' num2str(round(max_))])
+            plot([0,50], [min_,min_],'r','LineWidth',1,'DisplayName',['Perigeo = ' num2str(round(min_))])
+            box on; grid on
+            legend('Interpreter','latex')
+            xlabel('\textit{Paso del propagador}','Interpreter','latex')
+            ylabel('\textit{Altura} [km]','Interpreter','latex')
+            title('\textit{\textbf{Evolucion altura: h = 1500, Fly by}}',...
+                  'Interpreter','latex', 'FontSize', 14)          
+            Save_as_PDF(h, 'Figuras\Evolucion_Altura_R-1500_fb')
+        
+            
     case 8
         disp('Contactos')
         

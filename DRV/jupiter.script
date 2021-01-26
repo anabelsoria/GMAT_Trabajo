@@ -1,5 +1,5 @@
 %General Mission Analysis Tool(GMAT) Script
-%Created: 2021-01-26 16:56:44
+%Created: 2021-01-26 20:03:56
 
 
 %----------------------------------------
@@ -389,6 +389,7 @@ GMAT Montegancedo.MinimumElevationAngle = 7;
 
 
 
+
 %----------------------------------------
 %---------- ForceModels
 %----------------------------------------
@@ -666,9 +667,9 @@ GMAT EarthView.EnableConstellations = Off;
 
 Create ReportFile Report_HE;
 GMAT Report_HE.SolverIterations = Current;
-GMAT Report_HE.UpperLeft = [ 0.1247940691927512 0.1815772034459907 ];
-GMAT Report_HE.Size = [ 0.5971993410214168 0.7945659377070908 ];
-GMAT Report_HE.RelativeZOrder = 1425;
+GMAT Report_HE.UpperLeft = [ 0.1243105642766228 0.1804407713498623 ];
+GMAT Report_HE.Size = [ 0.5965210012728044 0.7926997245179064 ];
+GMAT Report_HE.RelativeZOrder = 588;
 GMAT Report_HE.Maximized = false;
 GMAT Report_HE.Filename = 'Report_HE.csv';
 GMAT Report_HE.Precision = 16;
@@ -682,9 +683,9 @@ GMAT Report_HE.WriteReport = false;
 
 Create ReportFile Report_HE_orbit;
 GMAT Report_HE_orbit.SolverIterations = Current;
-GMAT Report_HE_orbit.UpperLeft = [ 0.1190280065897858 0.1696487740225315 ];
-GMAT Report_HE_orbit.Size = [ 0.5955518945634267 0.7912524850894632 ];
-GMAT Report_HE_orbit.RelativeZOrder = 1413;
+GMAT Report_HE_orbit.UpperLeft = [ 0.1187950784896054 0.1694214876033058 ];
+GMAT Report_HE_orbit.Size = [ 0.5952481968604157 0.790633608815427 ];
+GMAT Report_HE_orbit.RelativeZOrder = 488;
 GMAT Report_HE_orbit.Maximized = false;
 GMAT Report_HE_orbit.Filename = 'Report_HE_Orbit.csv';
 GMAT Report_HE_orbit.Precision = 16;
@@ -699,9 +700,9 @@ GMAT Report_HE_orbit.WriteReport = false;
 
 Create ReportFile Out_Orbit;
 GMAT Out_Orbit.SolverIterations = Current;
-GMAT Out_Orbit.UpperLeft = [ 0.0458254865034526 0.08749999999999999 ];
-GMAT Out_Orbit.Size = [ 0.5988700564971752 0.7977272727272727 ];
-GMAT Out_Orbit.RelativeZOrder = 304;
+GMAT Out_Orbit.UpperLeft = [ 0.04539669070852779 0.08677685950413223 ];
+GMAT Out_Orbit.Size = [ 0.5982180738226559 0.796831955922865 ];
+GMAT Out_Orbit.RelativeZOrder = 494;
 GMAT Out_Orbit.Maximized = false;
 GMAT Out_Orbit.Filename = 'ReportFile1.txt';
 GMAT Out_Orbit.Precision = 16;
@@ -813,9 +814,9 @@ GMAT Report_DV_01.ColumnWidth = 23;
 GMAT Report_DV_01.WriteReport = true;
 
 Create DynamicDataDisplay Table_DV_Mp;
-GMAT Table_DV_Mp.UpperLeft = [ 0.7789768185451639 0 ];
-GMAT Table_DV_Mp.Size = [ 0.4040767386091127 0.609012591119947 ];
-GMAT Table_DV_Mp.RelativeZOrder = 37;
+GMAT Table_DV_Mp.UpperLeft = [ 0.7751441383728379 0 ];
+GMAT Table_DV_Mp.Size = [ 0.4599615631005766 0.8568181818181818 ];
+GMAT Table_DV_Mp.RelativeZOrder = 772;
 GMAT Table_DV_Mp.Maximized = false;
 GMAT Table_DV_Mp.AddParameters = {1, DV_salida};
 GMAT Table_DV_Mp.AddParameters = {2, DV_MCM};
@@ -845,9 +846,9 @@ GMAT Table_DV_Mp.WarnColor = [218 165 32];
 GMAT Table_DV_Mp.CritColor = [255 0 0];
 
 Create DynamicDataDisplay Table_tiempos;
-GMAT Table_tiempos.UpperLeft = [ 0.7781774580335732 0.43870112657389 ];
-GMAT Table_tiempos.Size = [ 0.3948840927258194 0.3399602385685885 ];
-GMAT Table_tiempos.RelativeZOrder = 32;
+GMAT Table_tiempos.UpperLeft = [ 0.7738629083920564 0.4329545454545455 ];
+GMAT Table_tiempos.Size = [ 0.4503523382447149 0.5886363636363636 ];
+GMAT Table_tiempos.RelativeZOrder = 752;
 GMAT Table_tiempos.Maximized = false;
 GMAT Table_tiempos.AddParameters = {1, MaxStep_tb};
 GMAT Table_tiempos.AddParameters = {2, tb_up_limit};
@@ -859,9 +860,9 @@ GMAT Table_tiempos.WarnColor = [218 165 32];
 GMAT Table_tiempos.CritColor = [255 0 0];
 
 Create DynamicDataDisplay Table_Mf;
-GMAT Table_Mf.UpperLeft = [ 0.02478017585931255 0.6845593108018555 ];
-GMAT Table_Mf.Size = [ 0.1886490807354117 0.09476474486414845 ];
-GMAT Table_Mf.RelativeZOrder = 87;
+GMAT Table_Mf.UpperLeft = [ 0.02178090967328635 0.678409090909091 ];
+GMAT Table_Mf.Size = [ 0.2447149263292761 0.3443181818181818 ];
+GMAT Table_Mf.RelativeZOrder = 756;
 GMAT Table_Mf.Maximized = false;
 GMAT Table_Mf.AddParameters = {1, JupiterExpress_Finite.MainTank.FuelMass};
 GMAT Table_Mf.RowTextColors = {1, [0 0 0]};
@@ -870,11 +871,11 @@ GMAT Table_Mf.CritColor = [255 0 0];
 
 Create ReportFile EvolucionAltura;
 GMAT EvolucionAltura.SolverIterations = Current;
-GMAT EvolucionAltura.UpperLeft = [ 0.1798780487804878 0.1177847113884555 ];
-GMAT EvolucionAltura.Size = [ 0.5979965156794426 0.797191887675507 ];
-GMAT EvolucionAltura.RelativeZOrder = 4174;
+GMAT EvolucionAltura.UpperLeft = [ 0.1774503523382447 0.1136363636363636 ];
+GMAT EvolucionAltura.Size = [ 0.5951313260730301 0.7920454545454545 ];
+GMAT EvolucionAltura.RelativeZOrder = 559;
 GMAT EvolucionAltura.Maximized = false;
-GMAT EvolucionAltura.Filename = 'C:\Users\danie\Desktop\GMAT_Trabajo\Results\Reports\Evolucion_Altura\Evolucion_Altura_h-600_e-01.dat';
+GMAT EvolucionAltura.Filename = 'C:\Users\danie\Desktop\GMAT_Trabajo\Results\Reports\Evolucion_Altura\Evolucion_Altura_h-1500_fb.dat';
 GMAT EvolucionAltura.Precision = 16;
 GMAT EvolucionAltura.Add = {JupiterExpress_Finite.Jupiter.RMAG};
 GMAT EvolucionAltura.WriteHeaders = true;
@@ -903,9 +904,9 @@ GMAT TiempoLLegadaJupiter.ColumnWidth = 23;
 GMAT TiempoLLegadaJupiter.WriteReport = true;
 
 Create DynamicDataDisplay Budgets_Inicial;
-GMAT Budgets_Inicial.UpperLeft = [ 0.02398081534772182 0.7786613651424784 ];
-GMAT Budgets_Inicial.Size = [ 0.1894484412470024 0.09476474486414845 ];
-GMAT Budgets_Inicial.RelativeZOrder = 103;
+GMAT Budgets_Inicial.UpperLeft = [ 0.02114029468289558 0.7715909090909091 ];
+GMAT Budgets_Inicial.Size = [ 0.2453555413196669 0.3443181818181818 ];
+GMAT Budgets_Inicial.RelativeZOrder = 760;
 GMAT Budgets_Inicial.Maximized = false;
 GMAT Budgets_Inicial.AddParameters = {1, JupiterExpress_Finite.MainTank.FuelMass};
 GMAT Budgets_Inicial.RowTextColors = {1, [0 0 0]};
@@ -913,9 +914,9 @@ GMAT Budgets_Inicial.WarnColor = [218 165 32];
 GMAT Budgets_Inicial.CritColor = [255 0 0];
 
 Create DynamicDataDisplay Budgets_After_OutgoingH;
-GMAT Budgets_After_OutgoingH.UpperLeft = [ 0.2553956834532374 0.6964877402253148 ];
-GMAT Budgets_After_OutgoingH.Size = [ 0.2965627498001599 0.6600397614314115 ];
-GMAT Budgets_After_OutgoingH.RelativeZOrder = 7;
+GMAT Budgets_After_OutgoingH.UpperLeft = [ 0.2524023062139654 0.6897727272727273 ];
+GMAT Budgets_After_OutgoingH.Size = [ 0.3523382447149263 0.9079545454545455 ];
+GMAT Budgets_After_OutgoingH.RelativeZOrder = 744;
 GMAT Budgets_After_OutgoingH.Maximized = false;
 GMAT Budgets_After_OutgoingH.AddParameters = {1, JupiterExpress_Finite.MainTank.FuelMass};
 GMAT Budgets_After_OutgoingH.AddParameters = {2, JupiterExpress_Finite.Thruster_NearEarth.ThrustDirection1};
@@ -933,9 +934,9 @@ GMAT Budgets_After_OutgoingH.WarnColor = [218 165 32];
 GMAT Budgets_After_OutgoingH.CritColor = [255 0 0];
 
 Create DynamicDataDisplay Budgets_After_MCM;
-GMAT Budgets_After_MCM.UpperLeft = [ 0.5051958433253397 0.6998011928429424 ];
-GMAT Budgets_After_MCM.Size = [ 0.2981614708233413 0.5407554671968191 ];
-GMAT Budgets_After_MCM.RelativeZOrder = 12;
+GMAT Budgets_After_MCM.UpperLeft = [ 0.5016015374759769 0.6931818181818182 ];
+GMAT Budgets_After_MCM.Size = [ 0.3542600896860987 0.7886363636363637 ];
+GMAT Budgets_After_MCM.RelativeZOrder = 748;
 GMAT Budgets_After_MCM.Maximized = false;
 GMAT Budgets_After_MCM.AddParameters = {1, JupiterExpress_Finite.MainTank.FuelMass};
 GMAT Budgets_After_MCM.AddParameters = {2, JupiterExpress_Finite.Thurster_DeepSpace.ThrustDirection1};
@@ -953,9 +954,9 @@ GMAT Budgets_After_MCM.WarnColor = [218 165 32];
 GMAT Budgets_After_MCM.CritColor = [255 0 0];
 
 Create DynamicDataDisplay Budgets_FinalOrbit;
-GMAT Budgets_FinalOrbit.UpperLeft = [ 0.7937649880095923 0.6964877402253148 ];
-GMAT Budgets_FinalOrbit.Size = [ 0.4036770583533174 0.4923790589794566 ];
-GMAT Budgets_FinalOrbit.RelativeZOrder = 171;
+GMAT Budgets_FinalOrbit.UpperLeft = [ 0.7898782831518257 0.6897727272727273 ];
+GMAT Budgets_FinalOrbit.Size = [ 0.4593209481101858 0.740909090909091 ];
+GMAT Budgets_FinalOrbit.RelativeZOrder = 768;
 GMAT Budgets_FinalOrbit.Maximized = false;
 GMAT Budgets_FinalOrbit.AddParameters = {1, JupiterExpress_Finite.MainTank.FuelMass};
 GMAT Budgets_FinalOrbit.AddParameters = {2, JupiterExpress_Finite.Thruster_NearJup.ThrustDirection1};
@@ -974,9 +975,9 @@ GMAT Budgets_FinalOrbit.CritColor = [255 0 0];
 
 Create GroundTrackPlot TrazaJupiter;
 GMAT TrazaJupiter.SolverIterations = Current;
-GMAT TrazaJupiter.UpperLeft = [ 0 0.609012591119947 ];
-GMAT TrazaJupiter.Size = [ 0.3325339728217426 0.3320079522862823 ];
-GMAT TrazaJupiter.RelativeZOrder = 69;
+GMAT TrazaJupiter.UpperLeft = [ 0 0.6 ];
+GMAT TrazaJupiter.Size = [ 0.3331197950032031 0.3318181818181818 ];
+GMAT TrazaJupiter.RelativeZOrder = 706;
 GMAT TrazaJupiter.Maximized = false;
 GMAT TrazaJupiter.Add = {JupiterExpress_Finite};
 GMAT TrazaJupiter.DataCollectFrequency = 1;
@@ -988,9 +989,9 @@ GMAT TrazaJupiter.CentralBody = Jupiter;
 GMAT TrazaJupiter.TextureMap = 'Jupiter_HermesCelestiaMotherlode.jpg';
 
 Create DynamicDataDisplay RadPer_Achieved;
-GMAT RadPer_Achieved.UpperLeft = [ 0.02278177458033573 0.873426110006627 ];
-GMAT RadPer_Achieved.Size = [ 0.1902478017585931 0.1676607024519549 ];
-GMAT RadPer_Achieved.RelativeZOrder = 111;
+GMAT RadPer_Achieved.UpperLeft = [ 0.0204996796925048 0.8670454545454546 ];
+GMAT RadPer_Achieved.Size = [ 0.2466367713004484 0.4170454545454546 ];
+GMAT RadPer_Achieved.RelativeZOrder = 764;
 GMAT RadPer_Achieved.Maximized = false;
 GMAT RadPer_Achieved.AddParameters = {1, JupiterExpress_Finite.Jupiter.RadPer};
 GMAT RadPer_Achieved.RowTextColors = {1, [0 0 0]};
@@ -1059,8 +1060,8 @@ GMAT Mp2 = 0;
 GMAT Mp3 = 0;
 GMAT mu_J = 126686534;
 GMAT mu_Tierra = 398600;
-GMAT Option_h = 1;
-GMAT Option_Orbit = 3;
+GMAT Option_h = 2;
+GMAT Option_Orbit = 1;
 GMAT phi = 0;
 GMAT RAAN_final = 0;
 GMAT RAAN_NearEarth = 0;
@@ -1096,6 +1097,7 @@ GMAT Vz_MCM = 0;
 GMAT Xparking = 0;
 GMAT Yparking = 0;
 GMAT Zparking = 0;
+
 
 
 
@@ -1212,7 +1214,7 @@ If 'Instant Impulse' Impulsive_Option == 1.0
       Propagate 'PropTOF' DeepSpaceProp(JupiterExpress) {JupiterExpress.ElapsedDays = TOF};
       Achieve 'AchieveJupiter' DC1(JupiterExpress.Jupiter.RMAG = 0, {Tolerance = 48.2e5});
    EndTarget;  % For targeter DC1
-   Report 'Report_HE' Report_HE DV0 DeltaV_1.EarthMJ2000Eq.Element1 DeltaV_1.EarthMJ2000Eq.Element2 DeltaV_1.EarthMJ2000Eq.Element3;
+   Report 'Report_HE' Report_HE DV0 DeltaV_1.EarthMJ2000Eq.Element1 DeltaV_1.EarthMJ2000Eq.Element2 DeltaV_1.EarthMJ2000Eq.Element3 VinfX VinfY VinfZ;
    
    BeginScript 'DefineJupiterExpress_2'
       GMAT C3 = VinfX^2 + VinfY^2 + VinfZ^2;
@@ -1551,6 +1553,7 @@ If 'Finite Impulse' Impulsive_Option == 1
          EndIf;
       EndIf;
    EndScript;
+   Report EvolucionAltura JupiterExpress_Finite.Jupiter.RMAG;
    If 'If Fly-by' Option_Orbit == 1
       Propagate 'Fly-By' NearJupiter(JupiterExpress_Finite) {JupiterExpress_Finite.ElapsedDays = 1, OrbitColor = [31 224 224]};
    Else
