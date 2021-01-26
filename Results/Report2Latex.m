@@ -240,7 +240,48 @@ switch n
             title('\textit{\textbf{Evolucion altura: h = 1500, e = 0.6}}',...
                   'Interpreter','latex', 'FontSize', 14)          
             Save_as_PDF(h, 'Figuras\Evolucion_Altura_R-1500_e-06')
+            
+            
+        % h = 600, e = 0.1    
+        altura = load(['Reports/Evolucion_Altura/Evolucion_Altura_h-600_e-01.dat']) - rJ;
+        tiempo = linspace(0,2*24,length(altura));
+        
+        [max_, max_idx] = max(altura);
+        [min_, min_idx] = min(altura);
 
+        h = figure();
+            hold on
+            plot(tiempo,altura','LineWidth',1.5,'DisplayName','Altura')
+            plot([0,50], [max_,max_],'k','LineWidth',1,'DisplayName',['Apogeo = ' num2str(round(max_))])
+            plot([0,50], [min_,min_],'r','LineWidth',1,'DisplayName',['Perigeo = ' num2str(round(min_))])
+            box on; grid on;
+            legend('Interpreter','latex')
+            xlabel('\textit{tiempo} [horas]','Interpreter','latex')
+            ylabel('\textit{Altura} [km]','Interpreter','latex')
+            title('\textit{\textbf{Evolucion altura: h = 600, e = 0.1}}',...
+                  'Interpreter','latex', 'FontSize', 14)          
+            Save_as_PDF(h, 'Figuras\Evolucion_Altura_R-600_e-01')
+
+            
+        % h = 1500, e = 0.1    
+        altura = load(['Reports/Evolucion_Altura/Evolucion_Altura_h-1500_e-01.dat']) - rJ;
+        tiempo = linspace(0,2*24,length(altura));
+        
+        [max_, max_idx] = max(altura);
+        [min_, min_idx] = min(altura);
+
+        h = figure();
+            hold on
+            plot(tiempo,altura','LineWidth',1.5,'DisplayName','Altura')
+            plot([0,50], [max_,max_],'k','LineWidth',1,'DisplayName',['Apogeo = ' num2str(round(max_))])
+            plot([0,50], [min_,min_],'r','LineWidth',1,'DisplayName',['Perigeo = ' num2str(round(min_))])
+            box on; grid on;
+            legend('Interpreter','latex')
+            xlabel('\textit{tiempo} [horas]','Interpreter','latex')
+            ylabel('\textit{Altura} [km]','Interpreter','latex')
+            title('\textit{\textbf{Evolucion altura: h = 1500, e = 0.1}}',...
+                  'Interpreter','latex', 'FontSize', 14)          
+            Save_as_PDF(h, 'Figuras\Evolucion_Altura_R-1500_e-01')
             
     case 8
         disp('Contactos')
@@ -256,7 +297,7 @@ switch n
             plot(datos,'LineWidth',1.25,'DisplayName','h = 600, e = 0.6')
                     
         % Table
-        T = table(600, 0.6, resumen.Var9.Min, resumen.Var9.Median, resumen.Var9.Max);
+        T = table(0.6,600, length(datos),resumen.Var9.Min, resumen.Var9.Median, resumen.Var9.Max);
         
         
         % h = 1500, e = 0.6
@@ -267,18 +308,12 @@ switch n
 
         % figure
             plot(datos,'LineWidth',1.25,'DisplayName','h = 1500, e = 0.6')
-            box on; grid on;
-            xlabel('\textit{tiempo} [dias]','Interpreter','latex')
-            ylabel('\textit{tiempo de acceso} [s]','Interpreter','latex')
-            title('\textit{\textbf{Tiempo de acceso diario durante un a\~ no}}',...
-                  'Interpreter','latex', 'FontSize', 14)          
-            legend('Interpreter','latex')
-            Save_as_PDF(h, 'Figuras/Contactos')
+            
             
         % Table
-        T(end+1,:) = table(1500, 0.6, resumen.Var9.Min, resumen.Var9.Median, resumen.Var9.Max); 
+        T(end+1,:) = table( 0.6,1500, length(datos), resumen.Var9.Min, resumen.Var9.Median, resumen.Var9.Max); 
         
-%{
+
         % h = 600, e = 0.1
         accesos = readtable('Reports/Contactos/Contactos_h-600_e01.csv', 'HeaderLines',1);
         accesos = accesos(2:end-2,end);
@@ -289,7 +324,7 @@ switch n
             plot(datos,'LineWidth',1.25,'DisplayName','h = 600, e = 0.1')
             
         % Table
-        T(end+1,:) = table(1500, 0.6, resumen.Var9.Min, resumen.Var9.Median, resumen.Var9.Max); 
+        T(end+1,:) = table(600,0.1,  length(datos), resumen.Var9.Min, resumen.Var9.Median, resumen.Var9.Max); 
         
        
         % h = 1500, e = 0.1
@@ -305,20 +340,166 @@ switch n
             ylabel('\textit{tiempo de acceso} [s]','Interpreter','latex')
             title('\textit{\textbf{Tiempo de acceso diario durante un a\~ no}}',...
                   'Interpreter','latex', 'FontSize', 14)          
-            legend('Interpreter','latex')
+            legend('Interpreter','latex','Location','best')
             Save_as_PDF(h, 'Figuras/Contactos')
            
         % Table
-        T(end+1,:) = table(1500, 0.6, resumen.Var9.Min, resumen.Var9.Median, resumen.Var9.Max); 
+        T(end+1,:) = table(0.6, 1500, length(datos), resumen.Var9.Min, resumen.Var9.Median, resumen.Var9.Max); 
         
-%}        
+        
+        % FB, h = 600
+        accesos = readtable('Reports/Contactos/Contactos_h-600_Flyby.csv', 'HeaderLines',1);
+        accesos = accesos(1:end-1,17);
+        resumen = summary(accesos);
+        datos = table2array(accesos);
+            
+        % Table
+        T(end+1,:) = table(0, 600 , length(datos), resumen.Var17.Min, resumen.Var17.Median, resumen.Var17.Max); 
+        
+        % FB, h = 1500
+        accesos = readtable('Reports/Contactos/Contactos_h-1500_Flyby.csv', 'HeaderLines',1);
+        accesos = accesos(1:end-1,17);
+        resumen = summary(accesos);
+        datos = table2array(accesos);
+            
+        % Table
+        T(end+1,:) = table(0, 1500 , length(datos), resumen.Var17.Min, resumen.Var17.Median, resumen.Var17.Max);      
+        
+        
         % Change variable names
-        varNames = {'$h_p$ [km]', '$e$', '$Minimo$ [s]', '$Maximo$ [s]', '$Media$ [s]'};
+        varNames = {'$e$','$h_p$ [km]', 'días' , '$Minimo$ [s]', '$Maximo$ [s]', '$Media$ [s]'};
         T.Properties.VariableNames = varNames;
 
+        for i = 1:size(T,1)
+            for j = 4:size(T,2)
+                T{i,j} = round(T{i,j});
+            end
+        end
+        
         table2latex(T, 'Tablas\Contactos',...
             'Contactos',...
             'contactos')
+
+        
+     case 9
+        disp('Eclipses')
+        
+        % h = 600, e = 0.6
+        eclipses = readtable('Reports/Eclipses/Eclipses_h-600_e06.csv', 'HeaderLines',1);
+        
+        % Sacar las umbras y penumbras
+        idx = [];
+        Umbra = [];
+        Penumbra = [];
+        for i = 1:length(eclipses.Var11) 
+            if strcmp(eclipses.Var11(i),'Umbra') == 1
+                idx = cat(1,idx,i); 
+                Umbra = cat(1,eclipses.Var13(i),Umbra);
+            elseif strcmp(eclipses.Var11(i),'Penumbra') == 1
+                Penumbra = cat(1,eclipses.Var13(i),Penumbra);
+            end
+        end
+        
+        Umbra = array2table(Umbra);
+        Penumbra = array2table(Penumbra);
+        umbra = summary(Umbra);
+        penumbra = summary(Penumbra);
+        
+        % Table
+        T = table(0.6,600,{'Umbra'},umbra.Umbra.Size(1),umbra.Umbra.Min, umbra.Umbra.Median, umbra.Umbra.Max);
+        T(end+1,:) = table(0.6,600,{'Penumbra'},penumbra.Penumbra.Size(1),penumbra.Penumbra.Min, penumbra.Penumbra.Median, penumbra.Penumbra.Max);
+        % Change variable names
+        
+        % h = 1500, e = 0.6
+        eclipses = readtable('Reports/Eclipses/Eclipses_h-1500_e06.csv', 'HeaderLines',1);
+        
+        % Sacar las umbras y penumbras
+        idx = [];
+        Umbra = [];
+        Penumbra = [];
+        for i = 1:length(eclipses.Var11) 
+            if strcmp(eclipses.Var11(i),'Umbra') == 1
+                idx = cat(1,idx,i); 
+                Umbra = cat(1,eclipses.Var13(i),Umbra);
+            elseif strcmp(eclipses.Var11(i),'Penumbra') == 1
+                Penumbra = cat(1,eclipses.Var13(i),Penumbra);
+            end
+        end
+        
+        Umbra = array2table(Umbra);
+        Penumbra = array2table(Penumbra);
+        umbra = summary(Umbra);
+        penumbra = summary(Penumbra);
+        
+        % Table
+        T(end+1,:) = table(0.6,1500,{'Umbra'},umbra.Umbra.Size(1),umbra.Umbra.Min, umbra.Umbra.Median, umbra.Umbra.Max);
+        T(end+1,:) = table(0.6,1500,{'Penumbra'},penumbra.Penumbra.Size(1),penumbra.Penumbra.Min, penumbra.Penumbra.Median, penumbra.Penumbra.Max);
+        
+        
+        % h = 600, e = 0.1
+        eclipses = readtable('Reports/Eclipses/Eclipses_h-600_e01.csv', 'HeaderLines',1);
+        
+        % Sacar las umbras y penumbras
+        idx = [];
+        Umbra = [];
+        Penumbra = [];
+        for i = 1:length(eclipses.Var11) 
+            if strcmp(eclipses.Var11(i),'Umbra') == 1
+                idx = cat(1,idx,i); 
+                Umbra = cat(1,eclipses.Var13(i),Umbra);
+            elseif strcmp(eclipses.Var11(i),'Penumbra') == 1
+                Penumbra = cat(1,eclipses.Var13(i),Penumbra);
+            end
+        end
+        
+        Umbra = array2table(Umbra);
+        Penumbra = array2table(Penumbra);
+        umbra = summary(Umbra);
+        penumbra = summary(Penumbra);
+        
+        % Table
+        T(end+1,:) = table(0.1,600,{'Umbra'},umbra.Umbra.Size(1),umbra.Umbra.Min, umbra.Umbra.Median, umbra.Umbra.Max);
+        T(end+1,:) = table(0.1,600,{'Penumbra'},penumbra.Penumbra.Size(1),penumbra.Penumbra.Min, penumbra.Penumbra.Median, penumbra.Penumbra.Max);
+        % Change variable names
+        
+        % h = 1500, e = 0.1
+        eclipses = readtable('Reports/Eclipses/Eclipses_h-1500_e01.csv', 'HeaderLines',1);
+        
+        % Sacar las umbras y penumbras
+        idx = [];
+        Umbra = [];
+        Penumbra = [];
+        for i = 1:length(eclipses.Var11) 
+            if strcmp(eclipses.Var11(i),'Umbra') == 1
+                idx = cat(1,idx,i); 
+                Umbra = cat(1,eclipses.Var13(i),Umbra);
+            elseif strcmp(eclipses.Var11(i),'Penumbra') == 1
+                Penumbra = cat(1,eclipses.Var13(i),Penumbra);
+            end
+        end
+        
+        Umbra = array2table(Umbra);
+        Penumbra = array2table(Penumbra);
+        umbra = summary(Umbra);
+        penumbra = summary(Penumbra);
+        
+        % Table
+        T(end+1,:) = table(0.1,1500,{'Umbra'},umbra.Umbra.Size(1),umbra.Umbra.Min, umbra.Umbra.Median, umbra.Umbra.Max);
+        T(end+1,:) = table(0.1,1500,{'Penumbra'},penumbra.Penumbra.Size(1),penumbra.Penumbra.Min, penumbra.Penumbra.Median, penumbra.Penumbra.Max);
+          
+        for i = 1:size(T,1)
+            for j = 5:size(T,2)
+                T{i,j} = round(T{i,j});
+            end
+        end
+        
+        % Change variable names
+        varNames = {'e','h','$Tipo$','número','$Minimo$ [s]','$Maximo$ [s]','$Media$ [s]'};
+        T.Properties.VariableNames = varNames;
+
+        table2latex(T, 'Tablas\Eclipses',...
+            'Eclipses',...
+            'Eclipses')
 
             
     otherwise
